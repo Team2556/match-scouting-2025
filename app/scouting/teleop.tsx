@@ -5,16 +5,37 @@ import { useState } from "react";
 import colorScheme from "@/constants/colorScheme";
 import Entypo from "@expo/vector-icons/Entypo";
 
-export default function TeleopContent() {
-  const [coralTeleop, setCoralTeleop] = useState(0);
-  const [coralAttTeleop, setCoralAttTeleop] = useState(0);
-  const [algaeTeleop, setAlgaeTeleop] = useState(0);
-
-  const [branch1Teleop, setBranch1Teleop] = useState(false);
-  const [branch2Teleop, setBranch2Teleop] = useState(false);
-  const [branch3Teleop, setBranch3Teleop] = useState(false);
-  const [branch4Teleop, setBranch4Teleop] = useState(false);
-
+export default function TeleopContent({
+  coralTeleop,
+  setCoralTeleop,
+  coralAttTeleop,
+  setCoralAttTeleop,
+  algaeTeleop,
+  setAlgaeTeleop,
+  branch1Teleop,
+  setBranch1Teleop,
+  branch2Teleop,
+  setBranch2Teleop,
+  branch3Teleop,
+  setBranch3Teleop,
+  branch4Teleop,
+  setBranch4Teleop,
+}: {
+  coralTeleop: any;
+  setCoralTeleop: any;
+  coralAttTeleop: any;
+  setCoralAttTeleop: any;
+  algaeTeleop: any;
+  setAlgaeTeleop: any;
+  branch1Teleop: any;
+  setBranch1Teleop: any;
+  branch2Teleop: any;
+  setBranch2Teleop: any;
+  branch3Teleop: any;
+  setBranch3Teleop: any;
+  branch4Teleop: any;
+  setBranch4Teleop: any;
+}) {
   return (
     <View
       style={{
@@ -23,8 +44,7 @@ export default function TeleopContent() {
         display: "flex",
         flexDirection: "row",
         flexWrap: "nowrap",
-        justifyContent: 'space-between'
-
+        justifyContent: "space-between",
       }}
     >
       <View style={{ width: "70%" }}>

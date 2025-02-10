@@ -5,18 +5,41 @@ import { useState } from "react";
 import colorScheme from "@/constants/colorScheme";
 import Entypo from "@expo/vector-icons/Entypo";
 
-export default function AutoContent() {
-  const [coralAuto, setCoralAuto] = useState(0);
-  const [coralAttAuto, setCoralAttAuto] = useState(0);
-  const [algaeAuto, setAlgaeAuto] = useState(0);
-
-  const [branch1Auto, setBranch1Auto] = useState(false);
-  const [branch2Auto, setBranch2Auto] = useState(false);
-  const [branch3Auto, setBranch3Auto] = useState(false);
-  const [branch4Auto, setBranch4Auto] = useState(false);
-
-  const [movedAuto, setMovedAuto] = useState(false);
-
+export default function AutoContent ({
+  coralAuto,
+  setCoralAuto,
+  coralAttAuto,
+  setCoralAttAuto,
+  algaeAuto,
+  setAlgaeAuto,
+  branch1Auto,
+  setBranch1Auto,
+  branch2Auto,
+  setBranch2Auto,
+  branch3Auto,
+  setBranch3Auto,
+  branch4Auto,
+  setBranch4Auto,
+  movedAuto,
+  setMovedAuto,
+} : {
+  coralAuto:any,
+  setCoralAuto:any,
+  coralAttAuto:any,
+  setCoralAttAuto:any,
+  algaeAuto:any,
+  setAlgaeAuto:any,
+  branch1Auto:any,
+  setBranch1Auto:any,
+  branch2Auto:any,
+  setBranch2Auto:any,
+  branch3Auto:any,
+  setBranch3Auto:any,
+  branch4Auto:any,
+  setBranch4Auto:any,
+  movedAuto:any,
+  setMovedAuto:any,
+}) {
   return (
     <View
       style={{
@@ -25,8 +48,7 @@ export default function AutoContent() {
         display: "flex",
         flexDirection: "row",
         flexWrap: "nowrap",
-        justifyContent: 'space-between'
-
+        justifyContent: "space-between",
       }}
     >
       <View style={{ width: "70%" }}>

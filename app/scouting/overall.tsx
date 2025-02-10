@@ -5,14 +5,29 @@ import { useState } from "react";
 import colorScheme from "@/constants/colorScheme";
 import Entypo from "@expo/vector-icons/Entypo";
 
-export default function OverallContent() {
-  const [finishState, setFinishState] = useState(1);
-
-  const [playedDefense, setPlayedDefense] = useState(false);
-  const [offGroundIntake, setOffGroudIntake] = useState(false);
-  const [receivedFoul, setReceivedFoul] = useState(false);
-  const [scoredNet, setScoredNet] = useState(false);
-
+export default function OverallContent({
+  finishState,
+  setFinishState,
+  playedDefense,
+  setPlayedDefense,
+  offGroundIntake,
+  setOffGroudIntake,
+  receivedFoul,
+  setReceivedFoul,
+  scoredNet,
+  setScoredNet,
+}: {
+  finishState: any;
+  setFinishState: any;
+  playedDefense: any;
+  setPlayedDefense: any;
+  offGroundIntake: any;
+  setOffGroudIntake: any;
+  receivedFoul: any;
+  setReceivedFoul: any;
+  scoredNet: any;
+  setScoredNet: any;
+}) {
   return (
     <View
       style={{
@@ -25,7 +40,7 @@ export default function OverallContent() {
       }}
     >
       <View style={{ width: "70%" }}>
-          {/* Played Defense */}
+        {/* Played Defense */}
         <Pressable
           style={{
             display: "flex",
