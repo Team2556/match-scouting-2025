@@ -11,7 +11,7 @@ export default function OverallContent({
   playedDefense,
   setPlayedDefense,
   offGroundIntake,
-  setOffGroudIntake,
+  setOffGroundIntake,
   receivedFoul,
   setReceivedFoul,
   scoredNet,
@@ -22,7 +22,7 @@ export default function OverallContent({
   playedDefense: any;
   setPlayedDefense: any;
   offGroundIntake: any;
-  setOffGroudIntake: any;
+  setOffGroundIntake: any;
   receivedFoul: any;
   setReceivedFoul: any;
   scoredNet: any;
@@ -85,7 +85,7 @@ export default function OverallContent({
             marginTop: 5,
             gap: 5,
           }}
-          onPress={() => setOffGroudIntake(!offGroundIntake)}
+          onPress={() => setOffGroundIntake(!offGroundIntake)}
         >
           <View
             style={

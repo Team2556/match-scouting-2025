@@ -32,7 +32,7 @@ export default function Index() {
   // Overall Information
   const [finishState, setFinishState] = useState(0);
   const [playedDefense, setPlayedDefense] = useState(false);
-  const [offGroundIntake, setOffGroudIntake] = useState(false);
+  const [offGroundIntake, setOffGroundIntake] = useState(false);
   const [receivedFoul, setReceivedFoul] = useState(false);
   const [scoredNet, setScoredNet] = useState(false);
 
@@ -117,7 +117,7 @@ export default function Index() {
               setAlgaeTeleop={setAlgaeTeleop}
               branch1Teleop={branch1Teleop}
               setBranch1Teleop={setBranch1Teleop}
-              branch2Teleop={branch4Teleop}
+              branch2Teleop={branch2Teleop}
               setBranch2Teleop={setBranch2Teleop}
               branch3Teleop={branch3Teleop}
               setBranch3Teleop={setBranch3Teleop}
@@ -135,7 +135,7 @@ export default function Index() {
               playedDefense={playedDefense}
               setPlayedDefense={setPlayedDefense}
               offGroundIntake={offGroundIntake}
-              setOffGroudIntake={offGroundIntake}
+              setOffGroundIntake={setOffGroundIntake}
               receivedFoul={receivedFoul}
               setReceivedFoul={setReceivedFoul}
               scoredNet={scoredNet}
