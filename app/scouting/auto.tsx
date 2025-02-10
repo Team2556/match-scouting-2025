@@ -25,6 +25,8 @@ export default function AutoContent() {
         display: "flex",
         flexDirection: "row",
         flexWrap: "nowrap",
+        justifyContent: 'space-between'
+
       }}
     >
       <View style={{ width: "70%" }}>
@@ -314,33 +316,33 @@ export default function AutoContent() {
           }}
           onPress={() => setMovedAuto(!movedAuto)}
         >
-          {movedAuto ? (
-            <View
-              style={{
-                width: 45,
-                height: 45,
-                borderWidth: 3,
-                borderColor: colorScheme.purple,
-                borderRadius: 8,
-                backgroundColor: colorScheme.purple,
-              }}
-            ></View>
-          ) : (
-            <View
-              style={{
-                width: 45,
-                height: 45,
-                borderWidth: 3,
-                borderColor: colorScheme.purple,
-                borderRadius: 8,
-              }}
-            ></View>
-          )}
-          <Text style={{ color: colorScheme.text, fontSize: 40, top: -2 }}>
-            ROBOT MOVED
+          <View
+            style={
+              movedAuto
+                ? {
+                    width: 35,
+                    height: 35,
+                    borderWidth: 3,
+                    borderColor: colorScheme.purple,
+                    borderRadius: 8,
+                    backgroundColor: colorScheme.purple,
+                  }
+                : {
+                    width: 35,
+                    height: 35,
+                    borderWidth: 3,
+                    borderColor: colorScheme.purple,
+                    borderRadius: 8,
+                  }
+            }
+          ></View>
+
+          <Text style={{ color: colorScheme.text, fontSize: 35, top: -2 }}>
+            Robot Moved
           </Text>
         </Pressable>
       </View>
+
       {/* Branches */}
       <View
         style={{
@@ -357,8 +359,8 @@ export default function AutoContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 5,
               borderColor: colorScheme.purple,
@@ -375,8 +377,8 @@ export default function AutoContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 5,
               borderColor: colorScheme.purple,
@@ -393,8 +395,8 @@ export default function AutoContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 4,
               borderColor: colorScheme.purple,
@@ -409,8 +411,8 @@ export default function AutoContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 4,
               borderColor: colorScheme.purple,
@@ -427,8 +429,8 @@ export default function AutoContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 4,
               borderColor: colorScheme.purple,
@@ -443,8 +445,8 @@ export default function AutoContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 4,
               borderColor: colorScheme.purple,
@@ -460,8 +462,8 @@ export default function AutoContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 4,
               borderColor: colorScheme.purple,
@@ -478,8 +480,8 @@ export default function AutoContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 4,
               borderColor: colorScheme.purple,

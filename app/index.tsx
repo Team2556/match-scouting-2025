@@ -7,6 +7,7 @@ import AutoContent from "./scouting/auto";
 
 import colorScheme from "@/constants/colorScheme";
 import { useState } from "react";
+import OverallContent from "./scouting/overall";
 
 export default function Index() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -65,6 +66,12 @@ export default function Index() {
             style={currentPage == 2 ? { display: "flex" } : { display: "none" }}
           >
             <TeleopContent />
+          </View>
+          {/* OVERALL */}
+          <View
+            style={currentPage == 3 ? { display: "flex" } : { display: "none" }}
+          >
+            <OverallContent />
           </View>
         </View>
 
@@ -133,7 +140,7 @@ export default function Index() {
           >
             <Text
               style={{
-                fontSize: 25,
+                fontSize: 20,
                 color: colorScheme.text,
                 textAlign: "center",
                 top: 5,

@@ -23,6 +23,8 @@ export default function TeleopContent() {
         display: "flex",
         flexDirection: "row",
         flexWrap: "nowrap",
+        justifyContent: 'space-between'
+
       }}
     >
       <View style={{ width: "70%" }}>
@@ -318,8 +320,8 @@ export default function TeleopContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 5,
               borderColor: colorScheme.purple,
@@ -336,8 +338,8 @@ export default function TeleopContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 5,
               borderColor: colorScheme.purple,
@@ -354,8 +356,8 @@ export default function TeleopContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 4,
               borderColor: colorScheme.purple,
@@ -370,8 +372,8 @@ export default function TeleopContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 4,
               borderColor: colorScheme.purple,
@@ -388,8 +390,8 @@ export default function TeleopContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 4,
               borderColor: colorScheme.purple,
@@ -404,8 +406,8 @@ export default function TeleopContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 4,
               borderColor: colorScheme.purple,
@@ -421,8 +423,8 @@ export default function TeleopContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 4,
               borderColor: colorScheme.purple,
@@ -439,8 +441,8 @@ export default function TeleopContent() {
           <Text
             style={{
               color: colorScheme.text,
-              width: 136,
-              height: 136,
+              width: 130,
+              height: 130,
               fontSize: 90,
               borderWidth: 4,
               borderColor: colorScheme.purple,
