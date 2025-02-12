@@ -8,8 +8,16 @@ import AutoContent from "./scouting/auto";
 import colorScheme from "@/constants/colorScheme";
 import { useState } from "react";
 import OverallContent from "./scouting/overall";
+import InfoContent from "./scouting/info";
 
 export default function Index() {
+  // Basic Information
+  const [nameInfo, setNameInfo] = useState("");
+  const [matchNum, setMatchNum] = useState();
+  const [teamNum, setTeamNum] = useState();
+  const [startDropValue, setStartDropValue] = useState('b1');
+  const [fieldIncomplete, setFieldIncomplete] = useState(false);
+
   // Auto Information
   const [coralAuto, setCoralAuto] = useState(0);
   const [coralAttAuto, setCoralAttAuto] = useState(0);
@@ -46,9 +54,28 @@ export default function Index() {
     "QR CODE",
   ];
   const pageNameAbr = ["INFO", "AUTO", "TELEOP", "END", "QR"];
+  const startPosAbr = {
+    'b1' : 'Blue 1',
+    'b2' : 'Blue 2',
+    'b3' : 'Blue 3',
+    'r1' : 'Red 1',
+    'r2' : 'Red 2',
+    'r3' : 'Red 3',
+  }
+
 
   const nextPage = () => {
-    if (currentPage < 4) {
+    if (currentPage == 0) {
+      if (!teamNum || !matchNum || !nameInfo) {
+        setFieldIncomplete(true);
+      }
+      else {
+        setFieldIncomplete(false);
+        setCurrentPage(currentPage + 1);
+      }
+    }
+
+    else if (currentPage < 4) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -81,6 +108,44 @@ export default function Index() {
             height: "100%",
           }}
         >
+          {/* Information */}
+          <View
+            style={
+              currentPage == 0
+                ? {
+                    display: "flex",
+                    width: "100%",
+                    height: "100%",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                  }
+                : { display: "none" }
+            }
+          >
+            <InfoContent nameInfo={nameInfo} setNameInfo={setNameInfo} matchNum={matchNum} setMatchNum={setMatchNum} teamNum={teamNum} setTeamNum={setTeamNum} startDropValue={startDropValue} setStartDropValue={setStartDropValue} fieldIncomplete={fieldIncomplete}/>
+            <View style={{ padding: 10 }}>
+              <Pressable
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderWidth: 3,
+                  borderRadius: 8,
+                  borderColor: colorScheme.text,
+                  width: "30%",
+                }}
+                onPress={() => alert('No')}
+              >
+                <Text
+                  style={{ color: colorScheme.text, fontSize: 40, top: -2 }}
+                >
+                  Home
+                </Text>
+              </Pressable>
+            </View>
+          </View>
+
           {/* AUTO */}
           <View
             style={currentPage == 1 ? { display: "flex" } : { display: "none" }}
@@ -162,10 +227,10 @@ export default function Index() {
           ) : (
             <View>
               <Text style={{ fontSize: 35, color: colorScheme.text }}>
-                Match: 12
+                Match: {matchNum}
               </Text>
               <Text style={{ fontSize: 20, color: colorScheme.text, top: -5 }}>
-                Chase Robbins
+                {nameInfo}
               </Text>
             </View>
           )}
@@ -190,10 +255,10 @@ export default function Index() {
                 }}
               ></View>
               <Text style={{ fontSize: 30, color: colorScheme.text }}>
-                #2557
+                #{teamNum}
               </Text>
               <Text style={{ fontSize: 30, color: colorScheme.text, top: -10 }}>
-                Blue 1
+                {startPosAbr[startDropValue]}
               </Text>
             </View>
           )}

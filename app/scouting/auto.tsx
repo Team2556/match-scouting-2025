@@ -1,7 +1,5 @@
 import { Text, View, Pressable } from "react-native";
 
-import { useState } from "react";
-
 import colorScheme from "@/constants/colorScheme";
 import Entypo from "@expo/vector-icons/Entypo";
 
