@@ -9,13 +9,14 @@ import colorScheme from "@/constants/colorScheme";
 import { useState } from "react";
 import OverallContent from "./scouting/overall";
 import InfoContent from "./scouting/info";
+import FinalContent from "./scouting/final";
 
 export default function Index() {
   // Basic Information
   const [nameInfo, setNameInfo] = useState("");
   const [matchNum, setMatchNum] = useState();
   const [teamNum, setTeamNum] = useState();
-  const [startDropValue, setStartDropValue] = useState('b1');
+  const [startDropValue, setStartDropValue] = useState("b1");
   const [fieldIncomplete, setFieldIncomplete] = useState(false);
 
   // Auto Information
@@ -46,6 +47,8 @@ export default function Index() {
 
   const [currentPage, setCurrentPage] = useState(0);
 
+  const [dataCode, setDataCode] = useState("null");
+
   const pageName = [
     "INFORMATION",
     "AUTONOUMOUS",
@@ -55,34 +58,92 @@ export default function Index() {
   ];
   const pageNameAbr = ["INFO", "AUTO", "TELEOP", "END", "QR"];
   const startPosAbr = {
-    'b1' : 'Blue 1',
-    'b2' : 'Blue 2',
-    'b3' : 'Blue 3',
-    'r1' : 'Red 1',
-    'r2' : 'Red 2',
-    'r3' : 'Red 3',
-  }
-
+    b1: "Blue 1",
+    b2: "Blue 2",
+    b3: "Blue 3",
+    r1: "Red 1",
+    r2: "Red 2",
+    r3: "Red 3",
+  };
 
   const nextPage = () => {
     if (currentPage == 0) {
       if (!teamNum || !matchNum || !nameInfo) {
         setFieldIncomplete(true);
-      }
-      else {
+      } else {
         setFieldIncomplete(false);
         setCurrentPage(currentPage + 1);
       }
-    }
-
-    else if (currentPage < 4) {
+    } else if (currentPage < 4) {
+      if (currentPage == 3) {
+        generateDataString();
+      }
       setCurrentPage(currentPage + 1);
     }
   };
+
   const prevPage = () => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
     }
+  };
+
+  const goToPage = (pageDest: any) => {
+    if (!teamNum || !matchNum || !nameInfo) {
+      setFieldIncomplete(true);
+    } else {
+      setFieldIncomplete(false);
+      setCurrentPage(pageDest);
+    }
+  }
+
+  const generateDataString = () => {
+    let dataString = "";
+
+    let intials = "";
+    for (let name in nameInfo.split(" ")) {
+      intials += nameInfo.split(" ")[name][0];
+    }
+
+    dataString += intials.padEnd(3, "0");
+    dataString += matchNum.padEnd(3, "0");
+    dataString += teamNum.padEnd(5, "0");
+    dataString += startDropValue;
+
+    dataString += String(coralAuto).padEnd(2, "0");
+    dataString += String(coralAttAuto).padEnd(2, "0");
+    dataString += String(algaeAuto).padEnd(2, "0");
+    dataString += branch1Auto
+      ? "1"
+      : "0" + branch2Auto
+      ? "1"
+      : "0" + branch3Auto
+      ? "1"
+      : "0" + branch4Auto
+      ? "1"
+      : "0";
+    dataString += movedAuto ? "1" : "0";
+
+    dataString += String(coralTeleop).padEnd(2, "0");
+    dataString += String(coralAttTeleop).padEnd(2, "0");
+    dataString += String(algaeTeleop).padEnd(2, "0");
+    dataString += branch1Teleop
+      ? "1"
+      : "0" + branch2Teleop
+      ? "1"
+      : "0" + branch3Teleop
+      ? "1"
+      : "0" + branch4Teleop
+      ? "1"
+      : "0";
+
+    dataString += playedDefense ? "1" : "0";
+    dataString += offGroundIntake ? "1" : "0";
+    dataString += receivedFoul ? "1" : "0";
+    dataString += scoredNet ? "1" : "0";
+    dataString += finishState;
+
+    setDataCode(dataString);
   };
 
   return (
@@ -122,7 +183,17 @@ export default function Index() {
                 : { display: "none" }
             }
           >
-            <InfoContent nameInfo={nameInfo} setNameInfo={setNameInfo} matchNum={matchNum} setMatchNum={setMatchNum} teamNum={teamNum} setTeamNum={setTeamNum} startDropValue={startDropValue} setStartDropValue={setStartDropValue} fieldIncomplete={fieldIncomplete}/>
+            <InfoContent
+              nameInfo={nameInfo}
+              setNameInfo={setNameInfo}
+              matchNum={matchNum}
+              setMatchNum={setMatchNum}
+              teamNum={teamNum}
+              setTeamNum={setTeamNum}
+              startDropValue={startDropValue}
+              setStartDropValue={setStartDropValue}
+              fieldIncomplete={fieldIncomplete}
+            />
             <View style={{ padding: 10 }}>
               <Pressable
                 style={{
@@ -135,7 +206,7 @@ export default function Index() {
                   borderColor: colorScheme.text,
                   width: "30%",
                 }}
-                onPress={() => alert('No')}
+                onPress={() => alert("No")}
               >
                 <Text
                   style={{ color: colorScheme.text, fontSize: 40, top: -2 }}
@@ -207,6 +278,34 @@ export default function Index() {
               setScoredNet={setScoredNet}
             />
           </View>
+          {/* QR Code */}
+          <View
+            style={currentPage == 4 ? { display: "flex" } : { display: "none" }}
+          >
+            <FinalContent
+              dataCode={dataCode}
+              coralAuto={coralAuto}
+              coralAttAuto={coralAttAuto}
+              algaeAuto={algaeAuto}
+              branch1Auto={branch1Auto}
+              branch2Auto={branch2Auto}
+              branch3Auto={branch3Auto}
+              branch4Auto={branch4Auto}
+              movedAuto={movedAuto}
+              coralTeleop={coralTeleop}
+              coralAttTeleop={coralAttTeleop}
+              algaeTeleop={algaeTeleop}
+              branch1Teleop={branch1Teleop}
+              branch2Teleop={branch2Teleop}
+              branch3Teleop={branch3Teleop}
+              branch4Teleop={branch4Teleop}
+              finishState={finishState}
+              playedDefense={playedDefense}
+              offGroundIntake={offGroundIntake}
+              receivedFoul={receivedFoul}
+              scoredNet={scoredNet}
+            />
+          </View>
         </View>
 
         {/* Side Bar */}
@@ -250,7 +349,7 @@ export default function Index() {
               <View
                 style={{
                   width: "100%",
-                  height: 5,
+                  height: 3,
                   backgroundColor: colorScheme.text,
                 }}
               ></View>
@@ -362,31 +461,31 @@ export default function Index() {
                 name="dot-fill"
                 size={40}
                 color={currentPage == 0 ? colorScheme.text : colorScheme.faded}
-                onPress={() => setCurrentPage(0)}
+                onPress={() => goToPage(0)}
               />
               <Octicons
                 name="dot-fill"
                 size={40}
                 color={currentPage == 1 ? colorScheme.text : colorScheme.faded}
-                onPress={() => setCurrentPage(1)}
+                onPress={() => goToPage(1)}
               />
               <Octicons
                 name="dot-fill"
                 size={40}
                 color={currentPage == 2 ? colorScheme.text : colorScheme.faded}
-                onPress={() => setCurrentPage(2)}
+                onPress={() => goToPage(2)}
               />
               <Octicons
                 name="dot-fill"
                 size={40}
                 color={currentPage == 3 ? colorScheme.text : colorScheme.faded}
-                onPress={() => setCurrentPage(3)}
+                onPress={() => goToPage(3)}
               />
               <Octicons
                 name="dot-fill"
                 size={40}
                 color={currentPage == 4 ? colorScheme.text : colorScheme.faded}
-                onPress={() => setCurrentPage(4)}
+                onPress={() => goToPage(4)}
               />
             </View>
           </View>

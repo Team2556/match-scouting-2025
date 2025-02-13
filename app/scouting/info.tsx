@@ -26,18 +26,15 @@ export default function InfoContent({
   setStartDropValue: any;
   fieldIncomplete: any;
 }) {
-  
-
   const [startDropOpen, setStartDropOpen] = useState(false);
   const [startDropItems, setStartDropItems] = useState([
     { label: "Blue 1", value: "b1" },
     { label: "Blue 2", value: "b2" },
     { label: "Blue 3", value: "b3" },
     { label: "Red 1", value: "r1" },
-    { label: "Red 3", value: "r2" },
-    { label: "Red 2", value: "r3" },
+    { label: "Red 2", value: "r2" },
+    { label: "Red 3", value: "r3" },
   ]);
-  
 
   const textInputStyle = {
     width: "70%",
@@ -83,6 +80,7 @@ export default function InfoContent({
           value={nameInfo}
           placeholder="First Last"
           placeholderTextColor={colorScheme.faded}
+          maxLength={50}
         />
       </View>
 
@@ -110,6 +108,7 @@ export default function InfoContent({
           placeholder="Match Number"
           placeholderTextColor={colorScheme.faded}
           keyboardType="numeric"
+          maxLength={3}
         />
       </View>
 
@@ -136,6 +135,7 @@ export default function InfoContent({
           value={teamNum}
           placeholder="Team Number"
           placeholderTextColor={colorScheme.faded}
+          maxLength={5}
         />
       </View>
 
