@@ -10,12 +10,13 @@ import { useState } from "react";
 import OverallContent from "./scoutingPages/overall";
 import InfoContent from "./scoutingPages/info";
 import FinalContent from "./scoutingPages/final";
+import { sidebar, wrapper } from "./styles/scoutingStyles";
 
 export default function Index() {
   // Basic Information
   const [nameInfo, setNameInfo] = useState("");
-  const [matchNum, setMatchNum] = useState();
-  const [teamNum, setTeamNum] = useState();
+  const [matchNum, setMatchNum] = useState("");
+  const [teamNum, setTeamNum] = useState("");
   const [startDropValue, setStartDropValue] = useState("b1");
   const [fieldIncomplete, setFieldIncomplete] = useState(false);
 
@@ -95,7 +96,7 @@ export default function Index() {
       setFieldIncomplete(false);
       setCurrentPage(pageDest);
     }
-  }
+  };
 
   const generateDataString = () => {
     let dataString = "";
@@ -105,14 +106,21 @@ export default function Index() {
       intials += nameInfo.split(" ")[name][0];
     }
 
-    dataString += intials.padEnd(3, "0");
-    dataString += matchNum.padEnd(3, "0");
-    dataString += teamNum.padEnd(5, "0");
+    dataString += intials.padStart(3, "0");
+    dataString += ",";
+    dataString += (matchNum as any).padStart(3, "0");
+    dataString += ",";
+    dataString += (teamNum as any).padStart(5, "0");
+    dataString += ",";
     dataString += startDropValue;
+    dataString += ",";
 
-    dataString += String(coralAuto).padEnd(2, "0");
-    dataString += String(coralAttAuto).padEnd(2, "0");
-    dataString += String(algaeAuto).padEnd(2, "0");
+    dataString += String(coralAuto).padStart(2, "0");
+    dataString += ",";
+    dataString += String(coralAttAuto).padStart(2, "0");
+    dataString += ",";
+    dataString += String(algaeAuto).padStart(2, "0");
+    dataString += ",";
     dataString += branch1Auto
       ? "1"
       : "0" + branch2Auto
@@ -122,11 +130,16 @@ export default function Index() {
       : "0" + branch4Auto
       ? "1"
       : "0";
+    dataString += ",";
     dataString += movedAuto ? "1" : "0";
+    dataString += ",";
 
-    dataString += String(coralTeleop).padEnd(2, "0");
-    dataString += String(coralAttTeleop).padEnd(2, "0");
-    dataString += String(algaeTeleop).padEnd(2, "0");
+    dataString += String(coralTeleop).padStart(2, "0");
+    dataString += ",";
+    dataString += String(coralAttTeleop).padStart(2, "0");
+    dataString += ",";
+    dataString += String(algaeTeleop).padStart(2, "0");
+    dataString += ",";
     dataString += branch1Teleop
       ? "1"
       : "0" + branch2Teleop
@@ -136,358 +149,227 @@ export default function Index() {
       : "0" + branch4Teleop
       ? "1"
       : "0";
+    dataString += ",";
 
     dataString += playedDefense ? "1" : "0";
+    dataString += ",";
     dataString += offGroundIntake ? "1" : "0";
+    dataString += ",";
     dataString += receivedFoul ? "1" : "0";
+    dataString += ",";
     dataString += scoredNet ? "1" : "0";
+    dataString += ",";
     dataString += finishState;
+    dataString += ",";
 
     setDataCode(dataString);
   };
 
   return (
-    <View
-      style={{
-        height: "100%",
-        width: "100%",
-        backgroundColor: colorScheme.background,
-        overflow: "hidden",
-      }}
-    >
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "nowrap",
-          height: "100%",
-        }}
-      >
+    <View style={wrapper.contentWrapper}>
+      <View style={wrapper.mainContent}>
+        {/* Information */}
         <View
-          style={{
-            width: "75%",
-            height: "100%",
-          }}
+          style={currentPage == 0 ? wrapper.infoContent : { display: "none" }}
         >
-          {/* Information */}
-          <View
-            style={
-              currentPage == 0
-                ? {
-                    display: "flex",
-                    width: "100%",
-                    height: "100%",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                  }
-                : { display: "none" }
-            }
-          >
-            <InfoContent
-              nameInfo={nameInfo}
-              setNameInfo={setNameInfo}
-              matchNum={matchNum}
-              setMatchNum={setMatchNum}
-              teamNum={teamNum}
-              setTeamNum={setTeamNum}
-              startDropValue={startDropValue}
-              setStartDropValue={setStartDropValue}
-              fieldIncomplete={fieldIncomplete}
-            />
-            <View style={{ padding: 10 }}>
-              <Pressable
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderWidth: 3,
-                  borderRadius: 8,
-                  borderColor: colorScheme.text,
-                  width: "30%",
-                }}
-                onPress={() => alert("No")}
-              >
-                <Text
-                  style={{ color: colorScheme.text, fontSize: 40, top: -2 }}
-                >
-                  Home
-                </Text>
-              </Pressable>
-            </View>
-          </View>
-
-          {/* AUTO */}
-          <View
-            style={currentPage == 1 ? { display: "flex" } : { display: "none" }}
-          >
-            <AutoContent
-              coralAuto={coralAuto}
-              setCoralAuto={setCoralAuto}
-              coralAttAuto={coralAttAuto}
-              setCoralAttAuto={setCoralAttAuto}
-              algaeAuto={algaeAuto}
-              setAlgaeAuto={setAlgaeAuto}
-              branch1Auto={branch1Auto}
-              setBranch1Auto={setBranch1Auto}
-              branch2Auto={branch2Auto}
-              setBranch2Auto={setBranch2Auto}
-              branch3Auto={branch3Auto}
-              setBranch3Auto={setBranch3Auto}
-              branch4Auto={branch4Auto}
-              setBranch4Auto={setBranch4Auto}
-              movedAuto={movedAuto}
-              setMovedAuto={setMovedAuto}
-            />
-          </View>
-          {/* TELEOP */}
-          <View
-            style={currentPage == 2 ? { display: "flex" } : { display: "none" }}
-          >
-            <TeleopContent
-              coralTeleop={coralTeleop}
-              setCoralTeleop={setCoralTeleop}
-              coralAttTeleop={coralAttTeleop}
-              setCoralAttTeleop={setCoralAttTeleop}
-              algaeTeleop={algaeTeleop}
-              setAlgaeTeleop={setAlgaeTeleop}
-              branch1Teleop={branch1Teleop}
-              setBranch1Teleop={setBranch1Teleop}
-              branch2Teleop={branch2Teleop}
-              setBranch2Teleop={setBranch2Teleop}
-              branch3Teleop={branch3Teleop}
-              setBranch3Teleop={setBranch3Teleop}
-              branch4Teleop={branch4Teleop}
-              setBranch4Teleop={setBranch4Teleop}
-            />
-          </View>
-          {/* OVERALL */}
-          <View
-            style={currentPage == 3 ? { display: "flex" } : { display: "none" }}
-          >
-            <OverallContent
-              finishState={finishState}
-              setFinishState={setFinishState}
-              playedDefense={playedDefense}
-              setPlayedDefense={setPlayedDefense}
-              offGroundIntake={offGroundIntake}
-              setOffGroundIntake={setOffGroundIntake}
-              receivedFoul={receivedFoul}
-              setReceivedFoul={setReceivedFoul}
-              scoredNet={scoredNet}
-              setScoredNet={setScoredNet}
-            />
-          </View>
-          {/* QR Code */}
-          <View
-            style={currentPage == 4 ? { display: "flex" } : { display: "none" }}
-          >
-            <FinalContent
-              dataCode={dataCode}
-              coralAuto={coralAuto}
-              coralAttAuto={coralAttAuto}
-              algaeAuto={algaeAuto}
-              branch1Auto={branch1Auto}
-              branch2Auto={branch2Auto}
-              branch3Auto={branch3Auto}
-              branch4Auto={branch4Auto}
-              movedAuto={movedAuto}
-              coralTeleop={coralTeleop}
-              coralAttTeleop={coralAttTeleop}
-              algaeTeleop={algaeTeleop}
-              branch1Teleop={branch1Teleop}
-              branch2Teleop={branch2Teleop}
-              branch3Teleop={branch3Teleop}
-              branch4Teleop={branch4Teleop}
-              finishState={finishState}
-              playedDefense={playedDefense}
-              offGroundIntake={offGroundIntake}
-              receivedFoul={receivedFoul}
-              scoredNet={scoredNet}
-            />
+          <InfoContent
+            nameInfo={nameInfo}
+            setNameInfo={setNameInfo}
+            matchNum={matchNum}
+            setMatchNum={setMatchNum}
+            teamNum={teamNum}
+            setTeamNum={setTeamNum}
+            startDropValue={startDropValue}
+            setStartDropValue={setStartDropValue}
+            fieldIncomplete={fieldIncomplete}
+          />
+          <View style={wrapper.footerContainer}>
+            <Pressable style={wrapper.footerButton} onPress={() => alert("No")}>
+              <Text style={wrapper.homeButton}>Home</Text>
+            </Pressable>
           </View>
         </View>
 
-        {/* Side Bar */}
+        {/* AUTO */}
         <View
-          style={{
-            width: "25%",
-            paddingTop: 15,
-            paddingBottom: 15,
-            left: -10,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
+          style={currentPage == 1 ? wrapper.contentDisplay : { display: "none" }}
         >
-          {/* Match */}
-          {currentPage == 0 ? (
-            <View></View>
-          ) : (
-            <View>
-              <Text style={{ fontSize: 35, color: colorScheme.text }}>
-                Match: {matchNum}
-              </Text>
-              <Text style={{ fontSize: 20, color: colorScheme.text, top: -5 }}>
-                {nameInfo}
-              </Text>
-            </View>
-          )}
+          <AutoContent
+            coralAuto={coralAuto}
+            setCoralAuto={setCoralAuto}
+            coralAttAuto={coralAttAuto}
+            setCoralAttAuto={setCoralAttAuto}
+            algaeAuto={algaeAuto}
+            setAlgaeAuto={setAlgaeAuto}
+            branch1Auto={branch1Auto}
+            setBranch1Auto={setBranch1Auto}
+            branch2Auto={branch2Auto}
+            setBranch2Auto={setBranch2Auto}
+            branch3Auto={branch3Auto}
+            setBranch3Auto={setBranch3Auto}
+            branch4Auto={branch4Auto}
+            setBranch4Auto={setBranch4Auto}
+            movedAuto={movedAuto}
+            setMovedAuto={setMovedAuto}
+          />
+        </View>
 
-          {/* Team */}
-          {currentPage != 0 && (
-            <View>
-              <Text
-                style={{
-                  fontSize: 35,
-                  color: colorScheme.text,
-                  textAlign: "center",
-                }}
-              >
-                SCOUTING
-              </Text>
-              <View
-                style={{
-                  width: "100%",
-                  height: 3,
-                  backgroundColor: colorScheme.text,
-                }}
-              ></View>
-              <Text style={{ fontSize: 30, color: colorScheme.text }}>
-                #{teamNum}
-              </Text>
-              <Text style={{ fontSize: 30, color: colorScheme.text, top: -10 }}>
-                {startPosAbr[startDropValue]}
-              </Text>
-            </View>
-          )}
+        {/* TELEOP */}
+        <View
+          style={currentPage == 2 ? wrapper.contentDisplay : { display: "none" }}
+        >
+          <TeleopContent
+            coralTeleop={coralTeleop}
+            setCoralTeleop={setCoralTeleop}
+            coralAttTeleop={coralAttTeleop}
+            setCoralAttTeleop={setCoralAttTeleop}
+            algaeTeleop={algaeTeleop}
+            setAlgaeTeleop={setAlgaeTeleop}
+            branch1Teleop={branch1Teleop}
+            setBranch1Teleop={setBranch1Teleop}
+            branch2Teleop={branch2Teleop}
+            setBranch2Teleop={setBranch2Teleop}
+            branch3Teleop={branch3Teleop}
+            setBranch3Teleop={setBranch3Teleop}
+            branch4Teleop={branch4Teleop}
+            setBranch4Teleop={setBranch4Teleop}
+          />
+        </View>
 
-          {/* Nav */}
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 5,
-              bottom: -10,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 20,
-                color: colorScheme.text,
-                textAlign: "center",
-                top: 5,
-              }}
-            >
-              {pageName[currentPage]}
+        {/* OVERALL */}
+        <View
+          style={
+            currentPage == 3 ? wrapper.contentDisplay : { display: "none" }
+          }
+        >
+          <OverallContent
+            finishState={finishState}
+            setFinishState={setFinishState}
+            playedDefense={playedDefense}
+            setPlayedDefense={setPlayedDefense}
+            offGroundIntake={offGroundIntake}
+            setOffGroundIntake={setOffGroundIntake}
+            receivedFoul={receivedFoul}
+            setReceivedFoul={setReceivedFoul}
+            scoredNet={scoredNet}
+            setScoredNet={setScoredNet}
+          />
+        </View>
+
+        {/* QR Code */}
+        <View
+          style={currentPage == 4 ? wrapper.contentDisplay : { display: "none" }}
+        >
+          <FinalContent
+            dataCode={dataCode}
+            coralAuto={coralAuto}
+            coralAttAuto={coralAttAuto}
+            algaeAuto={algaeAuto}
+            branch1Auto={branch1Auto}
+            branch2Auto={branch2Auto}
+            branch3Auto={branch3Auto}
+            branch4Auto={branch4Auto}
+            movedAuto={movedAuto}
+            coralTeleop={coralTeleop}
+            coralAttTeleop={coralAttTeleop}
+            algaeTeleop={algaeTeleop}
+            branch1Teleop={branch1Teleop}
+            branch2Teleop={branch2Teleop}
+            branch3Teleop={branch3Teleop}
+            branch4Teleop={branch4Teleop}
+            finishState={finishState}
+            playedDefense={playedDefense}
+            offGroundIntake={offGroundIntake}
+            receivedFoul={receivedFoul}
+            scoredNet={scoredNet}
+          />
+        </View>
+      </View>
+
+      {/* Side Bar */}
+      <View style={sidebar.container}>
+        {/* Match */}
+        {currentPage == 0 ? (
+          <View></View>
+        ) : (
+          <View>
+            <Text style={sidebar.heading}>Match: {matchNum}</Text>
+            <Text style={sidebar.subheading}>{nameInfo}</Text>
+          </View>
+        )}
+
+        {/* Team */}
+        {currentPage != 0 && (
+          <View>
+            <Text style={[sidebar.heading, { textAlign: "center" }]}>
+              SCOUTING
             </Text>
-            {currentPage != 0 && (
-              <Pressable
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderWidth: 3,
-                  borderRadius: 8,
-                  borderColor: colorScheme.text,
-                }}
-                onPress={() => prevPage()}
-              >
-                <Feather name="arrow-left" size={40} color={colorScheme.text} />
-                <Text
-                  style={{ color: colorScheme.text, fontSize: 40, top: -2 }}
-                >
-                  {pageNameAbr[currentPage - 1]}
-                </Text>
-              </Pressable>
-            )}
-            {currentPage == 4 ? (
-              <Pressable
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderWidth: 3,
-                  borderRadius: 8,
-                  borderColor: colorScheme.green,
-                }}
-              >
-                <Text
-                  style={{ color: colorScheme.green, fontSize: 40, top: -2 }}
-                >
-                  SAVE
-                </Text>
-              </Pressable>
-            ) : (
-              <Pressable
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderWidth: 3,
-                  borderRadius: 8,
-                  borderColor: colorScheme.text,
-                }}
-                onPress={() => nextPage()}
-              >
-                <Text
-                  style={{ color: colorScheme.text, fontSize: 40, top: -2 }}
-                >
-                  {pageNameAbr[currentPage + 1]}
-                </Text>
-                <Feather
-                  name="arrow-right"
-                  size={40}
-                  color={colorScheme.text}
-                />
-              </Pressable>
-            )}
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                flexWrap: "nowrap",
-                justifyContent: "space-around",
-                alignItems: "center",
-                paddingLeft: 20,
-                paddingRight: 20,
-                top: -5,
-              }}
+            <View style={sidebar.hr}></View>
+            <Text style={sidebar.subheading}>#{teamNum}</Text>
+            <Text style={sidebar.subheading}>
+              {(startPosAbr as any)[startDropValue]}
+            </Text>
+          </View>
+        )}
+
+        {/* Nav */}
+        <View style={sidebar.navContainer}>
+          <Text style={sidebar.pageLabel}>{pageName[currentPage]}</Text>
+          {currentPage != 0 && (
+            <Pressable style={sidebar.navButton} onPress={() => prevPage()}>
+              <Feather name="arrow-left" size={60} color={colorScheme.text} />
+              <Text style={sidebar.navText}>
+                {pageNameAbr[currentPage - 1]}
+              </Text>
+            </Pressable>
+          )}
+          {currentPage == 4 ? (
+            <Pressable
+              style={[sidebar.navButton, { borderColor: colorScheme.green }]}
             >
-              <Octicons
-                name="dot-fill"
-                size={40}
-                color={currentPage == 0 ? colorScheme.text : colorScheme.faded}
-                onPress={() => goToPage(0)}
-              />
-              <Octicons
-                name="dot-fill"
-                size={40}
-                color={currentPage == 1 ? colorScheme.text : colorScheme.faded}
-                onPress={() => goToPage(1)}
-              />
-              <Octicons
-                name="dot-fill"
-                size={40}
-                color={currentPage == 2 ? colorScheme.text : colorScheme.faded}
-                onPress={() => goToPage(2)}
-              />
-              <Octicons
-                name="dot-fill"
-                size={40}
-                color={currentPage == 3 ? colorScheme.text : colorScheme.faded}
-                onPress={() => goToPage(3)}
-              />
-              <Octicons
-                name="dot-fill"
-                size={40}
-                color={currentPage == 4 ? colorScheme.text : colorScheme.faded}
-                onPress={() => goToPage(4)}
-              />
-            </View>
+              <Text style={[sidebar.navText, { color: colorScheme.green }]}>
+                SAVE
+              </Text>
+            </Pressable>
+          ) : (
+            <Pressable style={sidebar.navButton} onPress={() => nextPage()}>
+              <Text style={sidebar.navText}>
+                {pageNameAbr[currentPage + 1]}
+              </Text>
+              <Feather name="arrow-right" size={60} color={colorScheme.text} />
+            </Pressable>
+          )}
+          <View style={sidebar.pagintationContainer}>
+            <Octicons
+              name="dot-fill"
+              size={80}
+              color={currentPage == 0 ? colorScheme.text : colorScheme.faded}
+              onPress={() => goToPage(0)}
+            />
+            <Octicons
+              name="dot-fill"
+              size={80}
+              color={currentPage == 1 ? colorScheme.text : colorScheme.faded}
+              onPress={() => goToPage(1)}
+            />
+            <Octicons
+              name="dot-fill"
+              size={80}
+              color={currentPage == 2 ? colorScheme.text : colorScheme.faded}
+              onPress={() => goToPage(2)}
+            />
+            <Octicons
+              name="dot-fill"
+              size={80}
+              color={currentPage == 3 ? colorScheme.text : colorScheme.faded}
+              onPress={() => goToPage(3)}
+            />
+            <Octicons
+              name="dot-fill"
+              size={80}
+              color={currentPage == 4 ? colorScheme.text : colorScheme.faded}
+              onPress={() => goToPage(4)}
+            />
           </View>
         </View>
       </View>

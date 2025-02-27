@@ -3,7 +3,8 @@ import { Text, TextInput, View } from "react-native";
 import colorScheme from "@/constants/colorScheme";
 import { useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
-import { setOptions } from "expo-splash-screen";
+
+import { info } from "../styles/scoutingStyles";
 
 export default function InfoContent({
   nameInfo,
@@ -36,46 +37,15 @@ export default function InfoContent({
     { label: "Red 3", value: "r3" },
   ]);
 
-  const textInputStyle = {
-    width: "70%",
-    fontSize: 35,
-    color: colorScheme.text,
-    borderWidth: 3,
-    borderColor: colorScheme.text,
-    borderRadius: 8,
-    paddingLeft: 5,
-  };
-
   return (
     <View
-      style={{
-        height: "auto",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        padding: 10,
-        gap: 10,
-      }}
+      style={info.contentContainer}
     >
       {/* Name */}
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 35,
-            color: colorScheme.text,
-            textAlign: "center",
-          }}
-        >
-          Name:
-        </Text>
+      <View style={info.inputContainer}>
+        <Text style={info.inputLabel}>Name:</Text>
         <TextInput
-          style={textInputStyle}
+          style={info.textInput}
           onChangeText={setNameInfo}
           value={nameInfo}
           placeholder="First Last"
@@ -86,23 +56,11 @@ export default function InfoContent({
 
       {/* Match # */}
       <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
+        style={info.inputContainer}
       >
-        <Text
-          style={{
-            fontSize: 35,
-            color: colorScheme.text,
-            textAlign: "center",
-          }}
-        >
-          Match #:
-        </Text>
+        <Text style={info.inputLabel}>Match #:</Text>
         <TextInput
-          style={textInputStyle}
+          style={info.textInput}
           onChangeText={setMatchNum}
           value={matchNum}
           placeholder="Match Number"
@@ -113,24 +71,10 @@ export default function InfoContent({
       </View>
 
       {/* Team # */}
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 35,
-            color: colorScheme.text,
-            textAlign: "center",
-          }}
-        >
-          Team #:
-        </Text>
+      <View style={info.inputContainer}>
+        <Text style={info.inputLabel}>Team #:</Text>
         <TextInput
-          style={textInputStyle}
+          style={info.textInput}
           onChangeText={setTeamNum}
           value={teamNum}
           placeholder="Team Number"
@@ -140,58 +84,29 @@ export default function InfoContent({
       </View>
 
       {/* Start Pos */}
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 35,
-            color: colorScheme.text,
-            textAlign: "center",
-          }}
-        >
-          Start Pos:
-        </Text>
-        <View style={{ width: "70%" }}>
-          <DropDownPicker
-            open={startDropOpen}
-            setOpen={setStartDropOpen}
-            items={startDropItems}
-            setItems={setStartDropItems}
-            value={startDropValue}
-            setValue={setStartDropValue}
-            theme="DARK"
-            arrowIconStyle={{
-              width: 30,
-              height: 30,
-            }}
-            style={{
-              backgroundColor: "none",
-              borderWidth: 3,
-              borderColor: colorScheme.text,
-              borderRadius: 8,
-            }}
-            textStyle={{ fontSize: 30, color: colorScheme.text }}
-            containerStyle={{
-              backgroundColor: "none",
-            }}
-            dropDownContainerStyle={{
-              backgroundColor: "none",
-              borderWidth: 3,
-              borderColor: colorScheme.text,
-              borderRadius: 8,
-            }}
+      <View style={info.inputContainer}>
+        <Text style={info.inputLabel}>Start Pos:</Text>
+        
+
+        <DropDownPicker
+          open={startDropOpen}
+          setOpen={setStartDropOpen}
+          items={startDropItems}
+          setItems={setStartDropItems}
+          value={startDropValue}
+          setValue={setStartDropValue}
+          style={info.dropdown}
+          theme="DARK"
+          arrowIconStyle={info.dropdownArrow}
+          textStyle={info.dropdownText}
+          containerStyle={info.dropdownContainer}
+          dropDownContainerStyle={info.dropDownItems}
           />
-        </View>
       </View>
 
       {fieldIncomplete && (
-        <Text style={{ fontSize: 35, color: colorScheme.red }}>
-          * Please Complete All Fields
+        <Text style={info.invalidText}>
+          *Please Complete All Fields
         </Text>
       )}
     </View>

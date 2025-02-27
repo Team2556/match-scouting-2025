@@ -1,6 +1,7 @@
 import { Text, View, Pressable } from "react-native";
 
 import colorScheme from "@/constants/colorScheme";
+import { game, other, sideInput } from "../styles/scoutingStyles";
 
 export default function OverallContent({
   finishState,
@@ -26,286 +27,88 @@ export default function OverallContent({
   setScoredNet: any;
 }) {
   return (
-    <View
-      style={{
-        height: "100%",
-        padding: 10,
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "nowrap",
-        justifyContent: "space-between",
-      }}
-    >
-      <View style={{ width: "70%" }}>
+    <View style={game.container}>
+      <View style={{ width: "75%" }}>
         {/* Played Defense */}
         <Pressable
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginTop: 15,
-            gap: 5,
-          }}
+          style={other.checkBoxOption}
           onPress={() => setPlayedDefense(!playedDefense)}
         >
           <View
-            style={
-              playedDefense
-                ? {
-                    width: 35,
-                    height: 35,
-                    borderWidth: 3,
-                    borderColor: colorScheme.purple,
-                    borderRadius: 8,
-                    backgroundColor: colorScheme.purple,
-                  }
-                : {
-                    width: 35,
-                    height: 35,
-                    borderWidth: 3,
-                    borderColor: colorScheme.purple,
-                    borderRadius: 8,
-                  }
-            }
+            style={playedDefense ? other.checkBoxTrue : other.checkBoxFalse}
           ></View>
 
-          <Text style={{ color: colorScheme.text, fontSize: 35, top: -2 }}>
-            Played Defense
-          </Text>
+          <Text style={other.checkBoxText}>Played Defense</Text>
         </Pressable>
         {/* Off-Ground Intake */}
         <Pressable
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginTop: 5,
-            gap: 5,
-          }}
+          style={other.checkBoxOption}
           onPress={() => setOffGroundIntake(!offGroundIntake)}
         >
           <View
-            style={
-              offGroundIntake
-                ? {
-                    width: 35,
-                    height: 35,
-                    borderWidth: 3,
-                    borderColor: colorScheme.purple,
-                    borderRadius: 8,
-                    backgroundColor: colorScheme.purple,
-                  }
-                : {
-                    width: 35,
-                    height: 35,
-                    borderWidth: 3,
-                    borderColor: colorScheme.purple,
-                    borderRadius: 8,
-                  }
-            }
+            style={offGroundIntake ? other.checkBoxTrue : other.checkBoxFalse}
           ></View>
 
-          <Text style={{ color: colorScheme.text, fontSize: 35, top: -2 }}>
-            Off-Ground Intake
-          </Text>
+          <Text style={other.checkBoxText}>Off-Ground Intake</Text>
         </Pressable>
         {/* Recieved Fouls */}
         <Pressable
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginTop: 5,
-            gap: 5,
-          }}
+          style={other.checkBoxOption}
           onPress={() => setReceivedFoul(!receivedFoul)}
         >
           <View
-            style={
-              receivedFoul
-                ? {
-                    width: 35,
-                    height: 35,
-                    borderWidth: 3,
-                    borderColor: colorScheme.purple,
-                    borderRadius: 8,
-                    backgroundColor: colorScheme.purple,
-                  }
-                : {
-                    width: 35,
-                    height: 35,
-                    borderWidth: 3,
-                    borderColor: colorScheme.purple,
-                    borderRadius: 8,
-                  }
-            }
+            style={receivedFoul ? other.checkBoxTrue : other.checkBoxFalse}
           ></View>
 
-          <Text style={{ color: colorScheme.text, fontSize: 35, top: -2 }}>
-            Recieved Foul(s)
-          </Text>
+          <Text style={other.checkBoxText}>Recieved Foul(s)</Text>
         </Pressable>
         {/* Scored in Net */}
         <Pressable
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginTop: 5,
-            gap: 5,
-          }}
+          style={other.checkBoxOption}
           onPress={() => setScoredNet(!scoredNet)}
         >
           <View
-            style={
-              scoredNet
-                ? {
-                    width: 35,
-                    height: 35,
-                    borderWidth: 3,
-                    borderColor: colorScheme.purple,
-                    borderRadius: 8,
-                    backgroundColor: colorScheme.purple,
-                  }
-                : {
-                    width: 35,
-                    height: 35,
-                    borderWidth: 3,
-                    borderColor: colorScheme.purple,
-                    borderRadius: 8,
-                  }
-            }
+            style={scoredNet ? other.checkBoxTrue : other.checkBoxFalse}
           ></View>
 
-          <Text style={{ color: colorScheme.text, fontSize: 35, top: -2 }}>
-            Scored in Net
-          </Text>
+          <Text style={other.checkBoxText}>Scored in Net</Text>
         </Pressable>
       </View>
-      {/* Branches */}
-      <View
-        style={{
-          width: "30%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          padding: 15,
-          paddingTop: 10,
-        }}
-      >
+      <View style={sideInput.container}>
         <Text
-          style={
-            finishState == 3
-              ? {
-                  color: colorScheme.text,
-                  width: 130,
-                  height: 130,
-                  fontSize: 90,
-                  borderWidth: 4,
-                  borderColor: colorScheme.purple,
-                  borderTopLeftRadius: 8,
-                  borderTopRightRadius: 8,
-                  backgroundColor: colorScheme.purple,
-                  textAlign: "center",
-                }
-              : {
-                  color: colorScheme.text,
-                  width: 130,
-                  height: 130,
-                  fontSize: 90,
-                  borderWidth: 4,
-                  borderColor: colorScheme.purple,
-                  borderTopLeftRadius: 8,
-                  borderTopRightRadius: 8,
-                  textAlign: "center",
-                }
-          }
+          style={[
+            finishState == 3 ? sideInput.enabled : sideInput.disabled,
+            sideInput.option,
+            sideInput.optionTop,
+          ]}
           onPress={() => setFinishState(3)}
         >
           D
         </Text>
         <Text
-          style={
-            finishState == 2
-              ? {
-                  color: colorScheme.text,
-                  width: 130,
-                  height: 130,
-                  fontSize: 90,
-                  borderWidth: 4,
-                  borderColor: colorScheme.purple,
-                  backgroundColor: colorScheme.purple,
-                  textAlign: "center",
-                }
-              : {
-                  color: colorScheme.text,
-                  width: 130,
-                  height: 130,
-                  fontSize: 90,
-                  borderWidth: 4,
-                  borderColor: colorScheme.purple,
-                  textAlign: "center",
-                }
-          }
+          style={[
+            finishState == 2 ? sideInput.enabled : sideInput.disabled,
+            sideInput.option,
+          ]}
           onPress={() => setFinishState(2)}
         >
           S
         </Text>
         <Text
-          style={
-            finishState == 1
-              ? {
-                  color: colorScheme.text,
-                  width: 130,
-                  height: 130,
-                  fontSize: 90,
-                  borderWidth: 4,
-                  borderColor: colorScheme.purple,
-                  backgroundColor: colorScheme.purple,
-                  textAlign: "center",
-                }
-              : {
-                  color: colorScheme.text,
-                  width: 130,
-                  height: 130,
-                  fontSize: 90,
-                  borderWidth: 4,
-                  borderColor: colorScheme.purple,
-                  textAlign: "center",
-                }
-          }
+          style={[
+            finishState == 1 ? sideInput.enabled : sideInput.disabled,
+            sideInput.option,
+          ]}
           onPress={() => setFinishState(1)}
         >
           P
         </Text>
         <Text
-          style={
-            finishState == 0
-              ? {
-                  color: colorScheme.text,
-                  width: 130,
-                  height: 130,
-                  fontSize: 90,
-                  borderWidth: 4,
-                  borderColor: colorScheme.purple,
-                  borderBottomLeftRadius: 8,
-                  borderBottomRightRadius: 8,
-                  backgroundColor: colorScheme.purple,
-                  textAlign: "center",
-                }
-              : {
-                  color: colorScheme.text,
-                  width: 130,
-                  height: 130,
-                  fontSize: 90,
-                  borderWidth: 4,
-                  borderColor: colorScheme.purple,
-                  borderBottomLeftRadius: 8,
-                  borderBottomRightRadius: 8,
-                  textAlign: "center",
-                }
-          }
+          style={[
+            finishState == 0 ? sideInput.enabled : sideInput.disabled,
+            sideInput.option,
+            sideInput.optionBottom,
+          ]}
           onPress={() => setFinishState(0)}
         >
           N
