@@ -11,8 +11,9 @@ import OverallContent from "./scoutingPages/overall";
 import InfoContent from "./scoutingPages/info";
 import FinalContent from "./scoutingPages/final";
 import { sidebar, wrapper } from "./styles/scoutingStyles";
+import { NavigationContainer } from "@react-navigation/native";
 
-export default function Index() {
+export default function ScoutingWrapper(navigation: any) {
   // Basic Information
   const [nameInfo, setNameInfo] = useState("");
   const [matchNum, setMatchNum] = useState("");
@@ -166,213 +167,228 @@ export default function Index() {
   };
 
   return (
-    <View style={wrapper.contentWrapper}>
-      <View style={wrapper.mainContent}>
-        {/* Information */}
-        <View
-          style={currentPage == 0 ? wrapper.infoContent : { display: "none" }}
-        >
-          <InfoContent
-            nameInfo={nameInfo}
-            setNameInfo={setNameInfo}
-            matchNum={matchNum}
-            setMatchNum={setMatchNum}
-            teamNum={teamNum}
-            setTeamNum={setTeamNum}
-            startDropValue={startDropValue}
-            setStartDropValue={setStartDropValue}
-            fieldIncomplete={fieldIncomplete}
-          />
-          <View style={wrapper.footerContainer}>
-            <Pressable style={wrapper.footerButton} onPress={() => alert("No")}>
-              <Text style={wrapper.homeButton}>Home</Text>
-            </Pressable>
+    <NavigationContainer>
+      <View style={wrapper.contentWrapper}>
+        <View style={wrapper.mainContent}>
+          {/* Information */}
+          <View
+            style={currentPage == 0 ? wrapper.infoContent : { display: "none" }}
+          >
+            <InfoContent
+              nameInfo={nameInfo}
+              setNameInfo={setNameInfo}
+              matchNum={matchNum}
+              setMatchNum={setMatchNum}
+              teamNum={teamNum}
+              setTeamNum={setTeamNum}
+              startDropValue={startDropValue}
+              setStartDropValue={setStartDropValue}
+              fieldIncomplete={fieldIncomplete}
+            />
+            <View style={wrapper.footerContainer}>
+              <Pressable
+                style={wrapper.footerButton}
+                onPress={() => alert("No")}
+              >
+                <Text style={wrapper.homeButton}>Home</Text>
+              </Pressable>
+            </View>
+          </View>
+
+          {/* AUTO */}
+          <View
+            style={
+              currentPage == 1 ? wrapper.contentDisplay : { display: "none" }
+            }
+          >
+            <AutoContent
+              coralAuto={coralAuto}
+              setCoralAuto={setCoralAuto}
+              coralAttAuto={coralAttAuto}
+              setCoralAttAuto={setCoralAttAuto}
+              algaeAuto={algaeAuto}
+              setAlgaeAuto={setAlgaeAuto}
+              branch1Auto={branch1Auto}
+              setBranch1Auto={setBranch1Auto}
+              branch2Auto={branch2Auto}
+              setBranch2Auto={setBranch2Auto}
+              branch3Auto={branch3Auto}
+              setBranch3Auto={setBranch3Auto}
+              branch4Auto={branch4Auto}
+              setBranch4Auto={setBranch4Auto}
+              movedAuto={movedAuto}
+              setMovedAuto={setMovedAuto}
+            />
+          </View>
+
+          {/* TELEOP */}
+          <View
+            style={
+              currentPage == 2 ? wrapper.contentDisplay : { display: "none" }
+            }
+          >
+            <TeleopContent
+              coralTeleop={coralTeleop}
+              setCoralTeleop={setCoralTeleop}
+              coralAttTeleop={coralAttTeleop}
+              setCoralAttTeleop={setCoralAttTeleop}
+              algaeTeleop={algaeTeleop}
+              setAlgaeTeleop={setAlgaeTeleop}
+              branch1Teleop={branch1Teleop}
+              setBranch1Teleop={setBranch1Teleop}
+              branch2Teleop={branch2Teleop}
+              setBranch2Teleop={setBranch2Teleop}
+              branch3Teleop={branch3Teleop}
+              setBranch3Teleop={setBranch3Teleop}
+              branch4Teleop={branch4Teleop}
+              setBranch4Teleop={setBranch4Teleop}
+            />
+          </View>
+
+          {/* OVERALL */}
+          <View
+            style={
+              currentPage == 3 ? wrapper.contentDisplay : { display: "none" }
+            }
+          >
+            <OverallContent
+              finishState={finishState}
+              setFinishState={setFinishState}
+              playedDefense={playedDefense}
+              setPlayedDefense={setPlayedDefense}
+              offGroundIntake={offGroundIntake}
+              setOffGroundIntake={setOffGroundIntake}
+              receivedFoul={receivedFoul}
+              setReceivedFoul={setReceivedFoul}
+              scoredNet={scoredNet}
+              setScoredNet={setScoredNet}
+            />
+          </View>
+
+          {/* QR Code */}
+          <View
+            style={
+              currentPage == 4 ? wrapper.contentDisplay : { display: "none" }
+            }
+          >
+            <FinalContent
+              dataCode={dataCode}
+              coralAuto={coralAuto}
+              coralAttAuto={coralAttAuto}
+              algaeAuto={algaeAuto}
+              branch1Auto={branch1Auto}
+              branch2Auto={branch2Auto}
+              branch3Auto={branch3Auto}
+              branch4Auto={branch4Auto}
+              movedAuto={movedAuto}
+              coralTeleop={coralTeleop}
+              coralAttTeleop={coralAttTeleop}
+              algaeTeleop={algaeTeleop}
+              branch1Teleop={branch1Teleop}
+              branch2Teleop={branch2Teleop}
+              branch3Teleop={branch3Teleop}
+              branch4Teleop={branch4Teleop}
+              finishState={finishState}
+              playedDefense={playedDefense}
+              offGroundIntake={offGroundIntake}
+              receivedFoul={receivedFoul}
+              scoredNet={scoredNet}
+            />
           </View>
         </View>
 
-        {/* AUTO */}
-        <View
-          style={currentPage == 1 ? wrapper.contentDisplay : { display: "none" }}
-        >
-          <AutoContent
-            coralAuto={coralAuto}
-            setCoralAuto={setCoralAuto}
-            coralAttAuto={coralAttAuto}
-            setCoralAttAuto={setCoralAttAuto}
-            algaeAuto={algaeAuto}
-            setAlgaeAuto={setAlgaeAuto}
-            branch1Auto={branch1Auto}
-            setBranch1Auto={setBranch1Auto}
-            branch2Auto={branch2Auto}
-            setBranch2Auto={setBranch2Auto}
-            branch3Auto={branch3Auto}
-            setBranch3Auto={setBranch3Auto}
-            branch4Auto={branch4Auto}
-            setBranch4Auto={setBranch4Auto}
-            movedAuto={movedAuto}
-            setMovedAuto={setMovedAuto}
-          />
-        </View>
-
-        {/* TELEOP */}
-        <View
-          style={currentPage == 2 ? wrapper.contentDisplay : { display: "none" }}
-        >
-          <TeleopContent
-            coralTeleop={coralTeleop}
-            setCoralTeleop={setCoralTeleop}
-            coralAttTeleop={coralAttTeleop}
-            setCoralAttTeleop={setCoralAttTeleop}
-            algaeTeleop={algaeTeleop}
-            setAlgaeTeleop={setAlgaeTeleop}
-            branch1Teleop={branch1Teleop}
-            setBranch1Teleop={setBranch1Teleop}
-            branch2Teleop={branch2Teleop}
-            setBranch2Teleop={setBranch2Teleop}
-            branch3Teleop={branch3Teleop}
-            setBranch3Teleop={setBranch3Teleop}
-            branch4Teleop={branch4Teleop}
-            setBranch4Teleop={setBranch4Teleop}
-          />
-        </View>
-
-        {/* OVERALL */}
-        <View
-          style={
-            currentPage == 3 ? wrapper.contentDisplay : { display: "none" }
-          }
-        >
-          <OverallContent
-            finishState={finishState}
-            setFinishState={setFinishState}
-            playedDefense={playedDefense}
-            setPlayedDefense={setPlayedDefense}
-            offGroundIntake={offGroundIntake}
-            setOffGroundIntake={setOffGroundIntake}
-            receivedFoul={receivedFoul}
-            setReceivedFoul={setReceivedFoul}
-            scoredNet={scoredNet}
-            setScoredNet={setScoredNet}
-          />
-        </View>
-
-        {/* QR Code */}
-        <View
-          style={currentPage == 4 ? wrapper.contentDisplay : { display: "none" }}
-        >
-          <FinalContent
-            dataCode={dataCode}
-            coralAuto={coralAuto}
-            coralAttAuto={coralAttAuto}
-            algaeAuto={algaeAuto}
-            branch1Auto={branch1Auto}
-            branch2Auto={branch2Auto}
-            branch3Auto={branch3Auto}
-            branch4Auto={branch4Auto}
-            movedAuto={movedAuto}
-            coralTeleop={coralTeleop}
-            coralAttTeleop={coralAttTeleop}
-            algaeTeleop={algaeTeleop}
-            branch1Teleop={branch1Teleop}
-            branch2Teleop={branch2Teleop}
-            branch3Teleop={branch3Teleop}
-            branch4Teleop={branch4Teleop}
-            finishState={finishState}
-            playedDefense={playedDefense}
-            offGroundIntake={offGroundIntake}
-            receivedFoul={receivedFoul}
-            scoredNet={scoredNet}
-          />
-        </View>
-      </View>
-
-      {/* Side Bar */}
-      <View style={sidebar.container}>
-        {/* Match */}
-        {currentPage == 0 ? (
-          <View></View>
-        ) : (
-          <View>
-            <Text style={sidebar.heading}>Match: {matchNum}</Text>
-            <Text style={sidebar.subheading}>{nameInfo}</Text>
-          </View>
-        )}
-
-        {/* Team */}
-        {currentPage != 0 && (
-          <View>
-            <Text style={[sidebar.heading, { textAlign: "center" }]}>
-              SCOUTING
-            </Text>
-            <View style={sidebar.hr}></View>
-            <Text style={sidebar.subheading}>#{teamNum}</Text>
-            <Text style={sidebar.subheading}>
-              {(startPosAbr as any)[startDropValue]}
-            </Text>
-          </View>
-        )}
-
-        {/* Nav */}
-        <View style={sidebar.navContainer}>
-          <Text style={sidebar.pageLabel}>{pageName[currentPage]}</Text>
-          {currentPage != 0 && (
-            <Pressable style={sidebar.navButton} onPress={() => prevPage()}>
-              <Feather name="arrow-left" size={60} color={colorScheme.text} />
-              <Text style={sidebar.navText}>
-                {pageNameAbr[currentPage - 1]}
-              </Text>
-            </Pressable>
-          )}
-          {currentPage == 4 ? (
-            <Pressable
-              style={[sidebar.navButton, { borderColor: colorScheme.green }]}
-            >
-              <Text style={[sidebar.navText, { color: colorScheme.green }]}>
-                SAVE
-              </Text>
-            </Pressable>
+        {/* Side Bar */}
+        <View style={sidebar.container}>
+          {/* Match */}
+          {currentPage == 0 ? (
+            <View></View>
           ) : (
-            <Pressable style={sidebar.navButton} onPress={() => nextPage()}>
-              <Text style={sidebar.navText}>
-                {pageNameAbr[currentPage + 1]}
-              </Text>
-              <Feather name="arrow-right" size={60} color={colorScheme.text} />
-            </Pressable>
+            <View>
+              <Text style={sidebar.heading}>Match: {matchNum}</Text>
+              <Text style={sidebar.subheading}>{nameInfo}</Text>
+            </View>
           )}
-          <View style={sidebar.pagintationContainer}>
-            <Octicons
-              name="dot-fill"
-              size={80}
-              color={currentPage == 0 ? colorScheme.text : colorScheme.faded}
-              onPress={() => goToPage(0)}
-            />
-            <Octicons
-              name="dot-fill"
-              size={80}
-              color={currentPage == 1 ? colorScheme.text : colorScheme.faded}
-              onPress={() => goToPage(1)}
-            />
-            <Octicons
-              name="dot-fill"
-              size={80}
-              color={currentPage == 2 ? colorScheme.text : colorScheme.faded}
-              onPress={() => goToPage(2)}
-            />
-            <Octicons
-              name="dot-fill"
-              size={80}
-              color={currentPage == 3 ? colorScheme.text : colorScheme.faded}
-              onPress={() => goToPage(3)}
-            />
-            <Octicons
-              name="dot-fill"
-              size={80}
-              color={currentPage == 4 ? colorScheme.text : colorScheme.faded}
-              onPress={() => goToPage(4)}
-            />
+
+          {/* Team */}
+          {currentPage != 0 && (
+            <View>
+              <Text style={[sidebar.heading, { textAlign: "center" }]}>
+                SCOUTING
+              </Text>
+              <View style={sidebar.hr}></View>
+              <Text style={sidebar.subheading}>#{teamNum}</Text>
+              <Text style={sidebar.subheading}>
+                {(startPosAbr as any)[startDropValue]}
+              </Text>
+            </View>
+          )}
+
+          {/* Nav */}
+          <View style={sidebar.navContainer}>
+            <Text style={sidebar.pageLabel}>{pageName[currentPage]}</Text>
+            {currentPage != 0 && (
+              <Pressable style={sidebar.navButton} onPress={() => prevPage()}>
+                <Feather name="arrow-left" size={60} color={colorScheme.text} />
+                <Text style={sidebar.navText}>
+                  {pageNameAbr[currentPage - 1]}
+                </Text>
+              </Pressable>
+            )}
+            {currentPage == 4 ? (
+              <Pressable
+                style={[sidebar.navButton, { borderColor: colorScheme.green }]}
+              >
+                <Text style={[sidebar.navText, { color: colorScheme.green }]}>
+                  SAVE
+                </Text>
+              </Pressable>
+            ) : (
+              <Pressable style={sidebar.navButton} onPress={() => nextPage()}>
+                <Text style={sidebar.navText}>
+                  {pageNameAbr[currentPage + 1]}
+                </Text>
+                <Feather
+                  name="arrow-right"
+                  size={60}
+                  color={colorScheme.text}
+                />
+              </Pressable>
+            )}
+            <View style={sidebar.pagintationContainer}>
+              <Octicons
+                name="dot-fill"
+                size={80}
+                color={currentPage == 0 ? colorScheme.text : colorScheme.faded}
+                onPress={() => goToPage(0)}
+              />
+              <Octicons
+                name="dot-fill"
+                size={80}
+                color={currentPage == 1 ? colorScheme.text : colorScheme.faded}
+                onPress={() => goToPage(1)}
+              />
+              <Octicons
+                name="dot-fill"
+                size={80}
+                color={currentPage == 2 ? colorScheme.text : colorScheme.faded}
+                onPress={() => goToPage(2)}
+              />
+              <Octicons
+                name="dot-fill"
+                size={80}
+                color={currentPage == 3 ? colorScheme.text : colorScheme.faded}
+                onPress={() => goToPage(3)}
+              />
+              <Octicons
+                name="dot-fill"
+                size={80}
+                color={currentPage == 4 ? colorScheme.text : colorScheme.faded}
+                onPress={() => goToPage(4)}
+              />
+            </View>
           </View>
         </View>
       </View>
-    </View>
+    </NavigationContainer>
   );
 }

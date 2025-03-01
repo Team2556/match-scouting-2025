@@ -221,8 +221,8 @@ export const sideInput = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: 15,
-    paddingTop: 10,
+    paddingLeft: 25,
+    paddingTop: 5,
   },
   option: {
     color: colorScheme.text,
@@ -232,6 +232,7 @@ export const sideInput = StyleSheet.create({
     borderWidth: 5,
     borderColor: colorScheme.purple,
     textAlign: "center",
+    marginBottom: -5,
   },
   enabled: {
     backgroundColor: colorScheme.purple,
