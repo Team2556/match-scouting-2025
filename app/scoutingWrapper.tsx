@@ -11,9 +11,9 @@ import OverallContent from "./scoutingPages/overall";
 import InfoContent from "./scoutingPages/info";
 import FinalContent from "./scoutingPages/final";
 import { sidebar, wrapper } from "./styles/scoutingStyles";
-import { NavigationContainer } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
-export default function ScoutingWrapper(navigation: any) {
+export default function ScoutingWrapper() {
   // Basic Information
   const [nameInfo, setNameInfo] = useState("");
   const [matchNum, setMatchNum] = useState("");
@@ -166,8 +166,10 @@ export default function ScoutingWrapper(navigation: any) {
     setDataCode(dataString);
   };
 
+  const navigation = useNavigation();
+
+
   return (
-    <NavigationContainer>
       <View style={wrapper.contentWrapper}>
         <View style={wrapper.mainContent}>
           {/* Information */}
@@ -188,7 +190,7 @@ export default function ScoutingWrapper(navigation: any) {
             <View style={wrapper.footerContainer}>
               <Pressable
                 style={wrapper.footerButton}
-                onPress={() => alert("No")}
+                onPress={() => navigation.navigate("Home")}
               >
                 <Text style={wrapper.homeButton}>Home</Text>
               </Pressable>
@@ -389,6 +391,5 @@ export default function ScoutingWrapper(navigation: any) {
           </View>
         </View>
       </View>
-    </NavigationContainer>
   );
 }
