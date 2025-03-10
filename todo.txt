@@ -1,3 +1,6 @@
+- Fix Home Page style
+    - Make sizes relative
+    - Fix text cutoff bug
 - Add option to delete database
     - Drop Database + Create Database under same name
 - Add Camera Functionality

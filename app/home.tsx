@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import * as SQLite from "expo-sqlite";
 import { useFocusEffect } from "expo-router";
+import { scale } from "react-native-size-matters";
 
 type MatchType = {
   id: number;
@@ -68,7 +69,7 @@ export default function Home() {
           }}
         >
           <Text style={header.searchButtonText}>Search</Text>
-          <Feather name="search" size={40} color="white" />
+          <Feather name="search" size={scale(30)} color="white" />
         </Pressable>
       </View>
       <View style={layout.content}>
@@ -114,7 +115,7 @@ export default function Home() {
               alert("Searching for " + matchSearch);
             }}
           >
-            <Feather name="search" size={40} color="white" />
+            <Feather name="search" size={scale(30)} color="white" />
           </Pressable>
         </View>
         <View style={footer.scoutButtons}>
@@ -124,7 +125,7 @@ export default function Home() {
               alert("Camera mode ACTIVATED");
             }}
           >
-            <Ionicons name="camera-outline" size={70} color="white" />
+            <Ionicons name="camera-outline" size={scale(30)} color="white" />
           </Pressable>
           <Pressable
             style={[footer.scoutButton, footer.plusButton]}
@@ -132,7 +133,7 @@ export default function Home() {
               navigation.navigate("Scouting" as never);
             }}
           >
-            <Entypo name="plus" size={70} color={colorScheme.green} />
+            <Entypo name="plus" size={scale(30)} color={colorScheme.green} />
           </Pressable>
         </View>
       </View>
