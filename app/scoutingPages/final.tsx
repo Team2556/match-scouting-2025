@@ -2,6 +2,8 @@ import colorScheme from "@/constants/colorScheme";
 import { Text, View } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 import { overview } from "../styles/scoutingStyles";
+import { text } from "../styles/styles";
+import { scale } from "react-native-size-matters";
 
 export default function FinalContent({
   dataCode,
@@ -62,8 +64,7 @@ export default function FinalContent({
     <View style={overview.container}>
       <View style={[overview.column, { width: "40%" }]}>
         <View>
-          <Text style={overview.heading}>AUTO</Text>
-          <View style={overview.hr}></View>
+          <Text style={[text.large, text.center, text.underline]}>AUTO</Text>
           <Text style={overview.text}>
             Coral: {coralAuto}/{coralAttAuto}
           </Text>
@@ -80,20 +81,11 @@ export default function FinalContent({
           <Text style={overview.text}>Moved: {movedAuto ? "YES" : "NO"}</Text>
         </View>
         <View>
-          <Text
-            style={overview.heading}
-          >
-            TELEOP
-          </Text>
-          <View
-            style={overview.hr}
-          ></View>
+          <Text style={[text.large, text.center, text.underline]}>TELEOP</Text>
           <Text style={overview.text}>
             Coral: {coralTeleop}/{coralAttTeleop}
           </Text>
-          <Text style={overview.text}>
-            Algae: {algaeTeleop}
-          </Text>
+          <Text style={overview.text}>Algae: {algaeTeleop}</Text>
           <Text style={overview.text}>
             Level:{" "}
             {generateBranchText([
@@ -105,14 +97,7 @@ export default function FinalContent({
           </Text>
         </View>
         <View>
-          <Text
-            style={overview.heading}
-          >
-            ENDGAME
-          </Text>
-          <View
-            style={overview.hr}
-          ></View>
+          <Text style={[text.large, text.center, text.underline]}>ENDGAME</Text>
           <Text style={overview.text}>
             Finish: {["NONE", "PARKED", "SHALLOW", "DEEP"][finishState]}
           </Text>
@@ -121,20 +106,13 @@ export default function FinalContent({
       <View style={overview.column}>
         <QRCode
           value={dataCode}
-          size={450}
+          size={scale(200)}
           color="black"
           backgroundColor="white"
           quietZone={10}
         />
         <View>
-          <Text
-            style={overview.heading}
-          >
-            OVERALL
-          </Text>
-          <View
-            style={overview.hr}
-          ></View>
+          <Text style={[text.large, text.center, text.underline]}>OVERALL</Text>
           <Text style={overview.text}>
             Defense: {playedDefense ? "YES" : "NO"}
           </Text>
@@ -144,9 +122,7 @@ export default function FinalContent({
           <Text style={overview.text}>
             Foul(s): {receivedFoul ? "YES" : "NO"}
           </Text>
-          <Text style={overview.text}>
-            Net: {scoredNet ? "YES" : "NO"}
-          </Text>
+          <Text style={overview.text}>Net: {scoredNet ? "YES" : "NO"}</Text>
         </View>
       </View>
     </View>

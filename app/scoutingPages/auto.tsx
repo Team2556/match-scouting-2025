@@ -2,7 +2,15 @@ import { Text, View, Pressable } from "react-native";
 
 import colorScheme from "@/constants/colorScheme";
 import Entypo from "@expo/vector-icons/Entypo";
-import { game, other, sideInput } from "../styles/scoutingStyles";
+import {
+  border,
+  button,
+  checkbox,
+  input,
+  sidebar,
+} from "../styles/scoutingStyles";
+import { text } from "../styles/styles";
+import { scale } from "react-native-size-matters";
 
 export default function AutoContent({
   coralAuto,
@@ -40,20 +48,20 @@ export default function AutoContent({
   setMovedAuto: any;
 }) {
   return (
-    <View style={game.container}>
-      <View style={game.mainInputContainer}>
+    <View style={input.container}>
+      <View style={input.main}>
         {/* Coral */}
-        <View style={game.inputSection}>
-          <Text style={game.inputHeading}>CORAL</Text>
-          <View style={game.amountDisplayContainer}>
-            <Text style={game.amountDisplay}>{coralAuto}</Text>
-            <Text style={game.amountLabel}>SCORED</Text>
-            <Text style={game.amountDisplay}>{coralAttAuto}</Text>
-            <Text style={game.amountLabelSmall}>ATTEMPTED</Text>
+        <View style={[input.section, border.default]}>
+          <Text style={input.sectionLabel}>CORAL</Text>
+          <View style={input.largeRow}>
+            <Text style={input.amount}>{coralAuto}</Text>
+            <Text style={input.amountLabelBig}>SCORED</Text>
+            <Text style={input.amount}>{coralAttAuto}</Text>
+            <Text style={input.amountLabelSmall}>ATTEMPTED</Text>
           </View>
-          <View style={game.buttonContainer}>
+          <View style={input.largeRow}>
             <Text
-              style={game.buttonTextLarge}
+              style={[button.large, button.green]}
               onPress={() => {
                 setCoralAuto(coralAuto + 1);
                 setCoralAttAuto(coralAttAuto + 1);
@@ -62,7 +70,7 @@ export default function AutoContent({
               SCORE
             </Text>
             <Text
-              style={game.buttonIconLarge}
+              style={button.gray}
               onPress={() => {
                 if (coralAuto > 0) {
                   setCoralAuto(coralAuto - 1);
@@ -70,80 +78,70 @@ export default function AutoContent({
                 }
               }}
             >
-              <Entypo name="minus" size={80} color={colorScheme.faded} />
+              <Entypo name="minus" size={scale(55)} color={colorScheme.faded} />
             </Text>
           </View>
-          <View style={game.buttonContainer}>
+          <View style={input.smallRow}>
             <Text
-              style={game.buttonTextSmall}
+              style={[button.small, button.red]}
               onPress={() => setCoralAttAuto(coralAttAuto + 1)}
             >
               MISS
             </Text>
             <Text
-              style={game.buttonIconSmall}
+              style={button.gray}
               onPress={() => {
                 if (coralAttAuto > coralAuto) {
                   setCoralAttAuto(coralAttAuto - 1);
                 }
               }}
             >
-              <Entypo name="minus" size={50} color={colorScheme.faded} />
+              <Entypo name="minus" size={scale(35)} color={colorScheme.faded} />
             </Text>
           </View>
         </View>
         {/* Algae */}
-        <View style={game.inputSection}>
-          <Text style={game.inputHeading}>ALGAE</Text>
-          <View style={game.smallInput}>
-            <Text style={game.amountDisplay}>{algaeAuto}</Text>
-            <Text style={game.amountLabel}>SCORED</Text>
+        <View style={[input.section, border.default]}>
+          <Text style={input.sectionLabel}>ALGAE</Text>
+          <View style={input.oneRow}>
+            <Text style={input.amount}>{algaeAuto}</Text>
+            <Text style={input.amountLabelBig}>SCORED</Text>
             <Text
-              style={[
-                game.buttonTextSmall,
-                game.smallInputAdjustments,
-                { borderColor: colorScheme.green, color: colorScheme.green },
-              ]}
+              style={[button.medium, button.green, { paddingTop: scale(8) }]}
               onPress={() => setAlgaeAuto(algaeAuto + 1)}
             >
               SCORE
             </Text>
             <Text
-              style={[
-                game.buttonIconSmall,
-                game.smallInputAdjustments,
-                { marginLeft: 15 },
-              ]}
+              style={[button.gray]}
               onPress={() => {
                 if (algaeAuto > 0) {
                   setAlgaeAuto(algaeAuto - 1);
                 }
               }}
             >
-              <Entypo name="minus" size={50} color={colorScheme.faded} />
+              <Entypo name="minus" size={scale(45)} color={colorScheme.faded} />
             </Text>
           </View>
         </View>
         {/* Moved? */}
         <Pressable
-          style={other.checkBoxOption}
+          style={checkbox.container}
           onPress={() => setMovedAuto(!movedAuto)}
         >
-          <View
-            style={movedAuto ? other.checkBoxTrue : other.checkBoxFalse}
-          ></View>
+          <View style={movedAuto ? checkbox.true : checkbox.false}></View>
 
-          <Text style={other.checkBoxText}>Robot Moved</Text>
+          <Text style={checkbox.text}>Robot Moved</Text>
         </Pressable>
       </View>
 
       {/* Branches */}
-      <View style={sideInput.container}>
+      <View style={sidebar.container}>
         <Text
           style={[
-            branch4Auto ? sideInput.enabled : sideInput.disabled,
-            sideInput.option,
-            sideInput.optionTop,
+            branch4Auto ? sidebar.enabled : sidebar.disabled,
+            sidebar.button,
+            sidebar.buttonTop,
           ]}
           onPress={() => setBranch4Auto(!branch4Auto)}
         >
@@ -151,8 +149,8 @@ export default function AutoContent({
         </Text>
         <Text
           style={[
-            branch3Auto ? sideInput.enabled : sideInput.disabled,
-            sideInput.option,
+            branch3Auto ? sidebar.enabled : sidebar.disabled,
+            sidebar.button,
           ]}
           onPress={() => setBranch3Auto(!branch3Auto)}
         >
@@ -160,8 +158,8 @@ export default function AutoContent({
         </Text>
         <Text
           style={[
-            branch2Auto ? sideInput.enabled : sideInput.disabled,
-            sideInput.option,
+            branch2Auto ? sidebar.enabled : sidebar.disabled,
+            sidebar.button,
           ]}
           onPress={() => setBranch2Auto(!branch2Auto)}
         >
@@ -169,9 +167,9 @@ export default function AutoContent({
         </Text>
         <Text
           style={[
-            branch1Auto ? sideInput.enabled : sideInput.disabled,
-            sideInput.option,
-            sideInput.optionBottom,
+            branch1Auto ? sidebar.enabled : sidebar.disabled,
+            sidebar.button,
+            sidebar.buttonBottom,
           ]}
           onPress={() => setBranch1Auto(!branch1Auto)}
         >

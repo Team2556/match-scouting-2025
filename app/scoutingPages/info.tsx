@@ -3,8 +3,7 @@ import { Text, TextInput, View } from "react-native";
 import colorScheme from "@/constants/colorScheme";
 import { useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
-
-import { info } from "../styles/scoutingStyles";
+import { button, info } from "../styles/scoutingStyles";
 
 export default function InfoContent({
   nameInfo,
@@ -39,13 +38,13 @@ export default function InfoContent({
 
   return (
     <View
-      style={info.contentContainer}
+      style={info.container}
     >
       {/* Name */}
-      <View style={info.inputContainer}>
-        <Text style={info.inputLabel}>Name:</Text>
+      <View style={info.row}>
+        <Text style={info.label}>Name:</Text>
         <TextInput
-          style={info.textInput}
+          style={[button.white, info.input]}
           onChangeText={setNameInfo}
           value={nameInfo}
           placeholder="First Last"
@@ -56,36 +55,37 @@ export default function InfoContent({
 
       {/* Match # */}
       <View
-        style={info.inputContainer}
+        style={info.row}
       >
-        <Text style={info.inputLabel}>Match #:</Text>
+        <Text style={info.label}>Match #:</Text>
         <TextInput
-          style={info.textInput}
+          style={[button.white, info.input]}
           onChangeText={setMatchNum}
           value={matchNum}
           placeholder="Match Number"
           placeholderTextColor={colorScheme.faded}
-          keyboardType="numeric"
+          keyboardType="number-pad"
           maxLength={3}
-        />
+          />
       </View>
 
       {/* Team # */}
-      <View style={info.inputContainer}>
-        <Text style={info.inputLabel}>Team #:</Text>
+      <View style={info.row}>
+        <Text style={info.label}>Team #:</Text>
         <TextInput
-          style={info.textInput}
+          style={[button.white, info.input]}
           onChangeText={setTeamNum}
           value={teamNum}
           placeholder="Team Number"
           placeholderTextColor={colorScheme.faded}
+          keyboardType="number-pad"
           maxLength={5}
         />
       </View>
 
       {/* Start Pos */}
-      <View style={info.inputContainer}>
-        <Text style={info.inputLabel}>Start Pos:</Text>
+      <View style={info.row}>
+        <Text style={info.label}>Start Pos:</Text>
         
 
         <DropDownPicker
@@ -95,17 +95,19 @@ export default function InfoContent({
           setItems={setStartDropItems}
           value={startDropValue}
           setValue={setStartDropValue}
-          style={info.dropdown}
           theme="DARK"
-          arrowIconStyle={info.dropdownArrow}
+          // arrowIconStyle={info.dropdownArrow}
           textStyle={info.dropdownText}
-          containerStyle={info.dropdownContainer}
-          dropDownContainerStyle={info.dropDownItems}
+          containerStyle={[info.dropdownContainer]}
+          style={[info.dropdown, button.white]}
+          dropDownContainerStyle={[info.dropdownOptions, button.white]}
+          itemSeparator={true}
+          itemSeparatorStyle={info.dropdownSeperator}
           />
       </View>
 
       {fieldIncomplete && (
-        <Text style={info.invalidText}>
+        <Text style={info.invalidAlert}>
           *Please Complete All Fields
         </Text>
       )}

@@ -1,388 +1,415 @@
 import { StyleSheet } from "react-native";
 import colorScheme from "@/constants/colorScheme";
+import { scale } from "react-native-size-matters";
+import InfoContent from "../scoutingPages/info";
 
-export const info = StyleSheet.create({
-  contentContainer: {
-    height: "auto",
+export const input = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  main: {
+    width: "74%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    gap: scale(5),
+  },
+  section: {
     width: "100%",
     display: "flex",
     flexDirection: "column",
-    padding: 10,
-    gap: 10,
-  },
-  inputContainer: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "nowrap",
+    padding: scale(5),
+    top: scale(8),
+    gap: scale(5),
     justifyContent: "space-between",
+    marginBottom: scale(10),
+    paddingTop: scale(8),
   },
-  inputLabel: {
-    fontSize: 50,
-    color: colorScheme.text,
-    flexBasis: 250,
-    flexGrow: 3,
-  },
-  textInput: {
-    flexGrow: 7,
-    fontSize: 50,
-    color: colorScheme.text,
-    borderWidth: 3,
-    borderColor: colorScheme.text,
-    borderRadius: 8,
-    paddingLeft: 5,
-  },
-  dropdownContainer: {
-    width: 611,
-  },
-  dropdown: {
-    borderWidth: 3,
-    borderColor: colorScheme.text,
-    borderRadius: 8,
-    backgroundColor: "none",
-  },
-  dropdownText: {
-    fontSize: 40,
-    color: colorScheme.text,
-  },
-  dropdownArrow: {
-    width: 60,
-    height: 60,
-  },
-  dropDownItems: {
-    backgroundColor: "none",
-    borderWidth: 3,
-    borderColor: colorScheme.text,
-    borderRadius: 8,
-  },
-  invalidText: {
-    fontSize: 40,
-    color: colorScheme.red,
-  },
-});
-
-export const game = StyleSheet.create({
-  container: {
-    height: "100%",
-    padding: "2%",
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "nowrap",
-    justifyContent: "space-between",
-  },
-  mainInputContainer: {
-    width: "75%",
-    display: "flex",
-    flexDirection: "column",
-    gap: 25,
-  },
-  inputSection: {
-    borderWidth: 3,
-    borderColor: colorScheme.text,
-    borderRadius: 8,
-    marginTop: 5,
-    padding: 10,
-    paddingTop: 5,
-    gap: 10,
-  },
-  inputHeading: {
-    color: colorScheme.text,
+  sectionLabel: {
     position: "absolute",
-    left: 40,
-    top: -30,
-    fontSize: 40,
-    width: "auto",
-    textAlign: "center",
-    paddingLeft: 20,
-    paddingRight: 20,
+    fontSize: scale(20),
+    color: colorScheme.text,
     backgroundColor: colorScheme.background,
+    width: scale(80),
+    textAlign: "center",
+    top: scale(-15),
+    left: scale(10),
   },
-  amountDisplayContainer: {
+  largeRow: {
+    height: scale(60),
     display: "flex",
     flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    gap: scale(5),
+    alignItems: 'center',
   },
-  amountDisplay: {
-    color: colorScheme.text,
-    fontSize: 130,
+  smallRow: {
+    alignItems: 'center',
+    height: scale(40),
+    display: "flex",
+    flexDirection: "row",
+    gap: scale(5),
+  },
+  amount: {
+    fontSize: scale(70),
+    minWidth: scale(80),
     textAlign: "right",
-    width: 150,
-    top: -5,
-    height: 150,
-  },
-  amountLabel: {
     color: colorScheme.text,
-    fontSize: 25,
-    width: "auto",
-    height: 30,
-    transform: "rotateZ(-90deg)",
-    left: -35,
-    top: 15,
+    marginTop: scale(-18),
+  },
+  amountLabelBig: {
+    fontSize: scale(12),
+    color: colorScheme.text,
+    transform: [{ rotate: "-90deg" }],
+    textAlign: "center",
+    height: scale(15),
+    left: scale(-23),
+    marginRight: scale(-30),
   },
   amountLabelSmall: {
+    fontSize: scale(9),
     color: colorScheme.text,
-    fontSize: 20,
-    width: "auto",
-    height: 30,
-    transform: "rotateZ(-90deg)",
-    left: -40,
-    top: 15,
-  },
-  buttonContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    gap: 10,
-  },
-  buttonTextLarge: {
-    color: colorScheme.green,
-    fontSize: 80,
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 5,
-    borderWidth: 3,
-    borderColor: colorScheme.green,
-    borderRadius: 8,
-  },
-  buttonIconLarge: {
-    color: colorScheme.faded,
-    fontSize: 80,
-    paddingLeft: 11,
-    paddingRight: 11,
-    paddingBottom: 5,
-    borderWidth: 3,
-    borderColor: colorScheme.faded,
-    borderRadius: 8,
-  },
-  buttonTextSmall: {
-    color: colorScheme.red,
-    fontSize: 50,
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 5,
-    borderWidth: 3,
-    borderColor: colorScheme.red,
-    borderRadius: 8,
-  },
-  buttonIconSmall: {
-    color: colorScheme.faded,
-    fontSize: 50,
-    paddingLeft: 7.5,
-    paddingRight: 7.5,
-    paddingBottom: 5,
-    borderWidth: 3,
-    borderColor: colorScheme.faded,
-    borderRadius: 8,
-  },
-  smallInput: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    height: 130,
-    top: -5,
-  },
-  smallInputAdjustments: {
-    left: -30,
-    top: 15,
-  },
-});
-
-export const other = StyleSheet.create({
-  checkBoxOption: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-  },
-  checkBoxTrue: {
-    width: 60,
-    height: 60,
-    borderWidth: 3,
-    borderColor: colorScheme.purple,
-    borderRadius: 8,
-    backgroundColor: colorScheme.purple,
-  },
-  checkBoxFalse: {
-    width: 60,
-    height: 60,
-    borderWidth: 3,
-    borderColor: colorScheme.purple,
-    borderRadius: 8,
-  },
-  checkBoxText: { color: colorScheme.text, fontSize: 60, top: -2 },
-});
-
-export const sideInput = StyleSheet.create({
-  container: {
-    width: "25%",
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    paddingLeft: 25,
-    paddingTop: 5,
-  },
-  option: {
-    color: colorScheme.text,
-    width: "100%",
-    height: "25%",
-    fontSize: 130,
-    borderWidth: 5,
-    borderColor: colorScheme.purple,
+    transform: [{ rotate: "-90deg" }],
     textAlign: "center",
-    marginBottom: -5,
+    height: scale(15),
+    left: scale(-23),
   },
-  enabled: {
-    backgroundColor: colorScheme.purple,
+  oneRow: {
+    height: scale(60),
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: 'center',
+    gap: scale(5),
   },
-  disabled: {
-    backgroundColor: "none",
+});
+export const button = StyleSheet.create({
+  large: {
+    fontSize: scale(40),
+    paddingLeft: scale(15),
+    paddingRight: scale(15),
   },
-  optionTop: {
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
+  medium: {
+    fontSize: scale(23),
+    paddingLeft: scale(8),
+    paddingRight: scale(8),
+    height: scale(50),
   },
-  optionBottom: {
-    borderBottomLeftRadius: 8,
-    borderBottomRightRadius: 8,
+    small: {
+    fontSize: scale(27),
+    paddingLeft: scale(10),
+    paddingRight: scale(10),
+  },
+  white: {
+    color: colorScheme.text,
+    borderWidth: scale(2),
+    borderColor: colorScheme.text,
+    borderRadius: scale(2),
+  },
+  green: {
+    color: colorScheme.green,
+    borderWidth: scale(2),
+    borderColor: colorScheme.green,
+    borderRadius: scale(2),
+  },
+  red: {
+    color: colorScheme.red,
+    borderWidth: scale(2),
+    borderColor: colorScheme.red,
+    borderRadius: scale(2),
+  },
+  gray: {
+    color: colorScheme.faded,
+    borderWidth: scale(2),
+    borderColor: colorScheme.faded,
+    borderRadius: scale(2),
+  },
+  home: {
+    width: scale(120),
+    fontSize: scale(35),
   },
 });
 
-export const wrapper = StyleSheet.create({
-  contentWrapper: {
-    height: "100%",
+export const checkbox = StyleSheet.create({
+  container: {
     width: "100%",
-    backgroundColor: colorScheme.background,
-    overflow: "hidden",
     display: "flex",
     flexDirection: "row",
-    flexWrap: "nowrap",
-  },
-  mainContent: {
-    width: "70%",
-    height: "100%",
-  },
-  contentDisplay: {
-    display: "flex",
-    height: "100%",
-    width: "100%",
-  },
-  infoContent: {
-    display: "flex",
-    width: "100%",
-    height: "100%",
-    flexDirection: "column",
-    justifyContent: "space-between",
-  },
-  footerContainer: {
-    padding: 10,
-  },
-  footerButton: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
-    borderWidth: 3,
-    borderRadius: 8,
-    borderColor: colorScheme.text,
-    width: 250,
+    gap: scale(5),
   },
-  homeButton: {
+  true: {
+    width: scale(30),
+    height: scale(30),
+    borderWidth: scale(2),
+    borderColor: colorScheme.purple,
+    borderRadius: scale(3),
+    backgroundColor: colorScheme.purple,
+  },
+  false: {
+    width: scale(30),
+    height: scale(30),
+    borderWidth: scale(2),
+    borderColor: colorScheme.purple,
+    borderRadius: scale(3),
+    backgroundColor: colorScheme.background,
+  },
+  text: {
+    fontSize: scale(30),
     color: colorScheme.text,
-    fontSize: 70,
-    top: -2,
+    top: scale(-2),
   },
 });
 
 export const sidebar = StyleSheet.create({
   container: {
+    width: "25%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    marginTop: scale(8),
+  },
+  button: {
+    width: "100%",
+    height: "24%",
+    borderColor: colorScheme.purple,
+    borderWidth: scale(3),
+    fontSize: scale(55),
+    color: colorScheme.text,
+    textAlign: "center",
+    marginBottom: scale(-2),
+  },
+  enabled: {
+    backgroundColor: colorScheme.purple,
+  },
+  disabled: {
+    backgroundColor: colorScheme.background,
+  },
+  buttonTop: {
+    borderTopLeftRadius: scale(3),
+    borderTopRightRadius: scale(3),
+  },
+  buttonBottom: {
+    borderBottomLeftRadius: scale(3),
+    borderBottomRightRadius: scale(3),
+  },
+});
+
+export const border = StyleSheet.create({
+  default: {
+    //hello
+    borderWidth: scale(2),
+    borderColor: colorScheme.text,
+    borderRadius: scale(2),
+  },
+});
+
+export const info = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    gap: scale(5),
+  },
+  row: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  label: {
+    fontSize: scale(20),
+    color: colorScheme.text,
+  },
+  input: {
+    width: scale(250),
+    fontSize: scale(20),
+    paddingLeft: scale(2),
+  },
+  invalidAlert: {
+    color: colorScheme.red,
+    fontSize: scale(20),
+  },
+  dropdownContainer: {
+    width: scale(250),
+  },
+  dropdown: {
+    paddingLeft: scale(2),
+    backgroundColor: colorScheme.background,
+  },
+  dropdownOptions: {
+    backgroundColor: colorScheme.background,
+  },
+  dropdownText: {
+    paddingTop: scale(2),
+    fontSize: scale(20),
+    height: scale(30),
+    color: colorScheme.text,
+  },
+  dropdownSeperator: {
+    marginTop: scale(3),
+    marginBottom: scale (5),
+    height: scale(2),
+    backgroundColor: colorScheme.text,
+  },
+});
+
+export const wrapper = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: "100%",
+    padding: scale(4),
+    backgroundColor: colorScheme.background,
+    display: "flex",
+    flexDirection: "row",
+    overflow: "hidden",
+    gap: scale(4),
+    justifyContent: "space-between",
+  },
+  main: {
+    width: "69%",
+    height: "100%",
+    display: "flex",
+  },
+  content: {
+    display: "flex",
+    height: "100%",
+  },
+  infoContent: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "100%",
+  },
+  footer: {
+    bottom: scale(50),
+  },
+});
+
+export const sidePanel = StyleSheet.create({
+  container: {
     width: "30%",
-    padding: "1.5%",
+    height: "100%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
   },
-  heading: {
-    fontSize: 60,
-    color: colorScheme.text,
-    marginBottom: "-5%",
-  },
-  subheading: {
-    fontSize: 45,
-    color: colorScheme.text,
-    marginBottom: "-5%",
-  },
   hr: {
-    marginTop: "5%",
     width: "100%",
-    height: "3%",
+    marginLeft: scale(0.1),
+    marginRight: scale(0.1),
     backgroundColor: colorScheme.text,
   },
-  pageLabel: {
-    fontSize: 30,
-    color: colorScheme.text,
-    textAlign: "center",
-    marginBottom: "-2%",
+});
+
+export const nav = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
-  navButton: {
+  label: {
+    color: colorScheme.text,
+    fontSize: scale(10),
+  },
+  button: {
+    borderWidth: scale(2),
+    borderColor: colorScheme.text,
+    borderRadius: scale(2),
+    width: "100%",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: 3,
-    borderRadius: 8,
-    borderColor: colorScheme.text,
   },
-  navText: {
+  buttonText: {
     color: colorScheme.text,
-    fontSize: 70,
-    top: "-5%",
-  },
-  navContainer: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-end",
-    height: "auto",
-    gap: 5,
-    bottom: -25,
+    fontSize: scale(30),
   },
   pagintationContainer: {
     display: "flex",
     flexDirection: "row",
-    flexWrap: "nowrap",
-    justifyContent: "space-around",
+    justifyContent: "center",
+    gap: scale(5),
+    width: "100%",
+    marginTop: scale(-5),
+    marginBottom: scale(-5),
+  },
+  break: {
+    height: scale(3),
+  },
+});
+
+export const modal = StyleSheet.create({
+  center: {
+    position: "fixed",
+    display: "flex",
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
     alignItems: "center",
-    paddingLeft: "5%",
-    paddingRight: "5%",
-    marginTop: "-5%",
+  },
+  container: {
+    width: "50%",
+    height: "40%",
+    padding: scale(2),
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: colorScheme.background,
+  },
+  heading: {
+    color: colorScheme.text,
+    fontSize: scale(35),
+  },
+  subheading: {
+    color: colorScheme.faded,
+    fontSize: scale(13),
+    top: scale(-20),
+  },
+  buttonContainer: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  button: {
+    borderWidth: scale(2),
+    borderColor: colorScheme.text,
+    borderRadius: scale(2),
+    width: "45%",
+  },
+  buttonText: {
+    textAlign: "center",
+    color: colorScheme.text,
+    fontSize: scale(30),
   },
 });
 
 export const overview = StyleSheet.create({
   container: {
+    width: "100%",
     height: "100%",
-    padding: "2%",
     display: "flex",
     flexDirection: "row",
-    flexWrap: "nowrap",
-    gap: 50,
+    gap: scale(10),
   },
   column: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 30,
+    height: "100%",
+    minWidth: scale(160),
+    flexDirection: "column",
+    gap: scale(10),
   },
-  heading: {
-    fontSize: 60,
+  text: {
+    fontSize: scale(18),
     color: colorScheme.text,
-    textAlign: "center",
+    marginBottom: scale(-7),
   },
-  hr: {
-    width: "100%",
-    height: 5,
-    backgroundColor: colorScheme.text,
-  },
-  text: { fontSize: 40, color: colorScheme.text, marginBottom: -10,},
 });

@@ -127,4 +127,6 @@ export const footer = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
     },
+    plusButton: {
+        borderColor: colorScheme.green,    }
 });

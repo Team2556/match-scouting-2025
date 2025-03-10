@@ -2,7 +2,8 @@ import { Text, View } from "react-native";
 
 import colorScheme from "@/constants/colorScheme";
 import Entypo from "@expo/vector-icons/Entypo";
-import { game, sideInput } from "../styles/scoutingStyles";
+import { border, button, input, sidebar } from "../styles/scoutingStyles";
+import { scale } from "react-native-size-matters";
 
 export default function TeleopContent({
   coralTeleop,
@@ -36,20 +37,20 @@ export default function TeleopContent({
   setBranch4Teleop: any;
 }) {
   return (
-    <View style={game.container}>
-      <View style={game.mainInputContainer}>
+    <View style={input.container}>
+      <View style={input.main}>
         {/* Coral */}
-        <View style={game.inputSection}>
-          <Text style={game.inputHeading}>CORAL</Text>
-          <View style={game.amountDisplayContainer}>
-            <Text style={game.amountDisplay}>{coralTeleop}</Text>
-            <Text style={game.amountLabel}>SCORED</Text>
-            <Text style={game.amountDisplay}>{coralAttTeleop}</Text>
-            <Text style={game.amountLabelSmall}>ATTEMPTED</Text>
+        <View style={[input.section, border.default]}>
+          <Text style={input.sectionLabel}>CORAL</Text>
+          <View style={input.largeRow}>
+            <Text style={input.amount}>{coralTeleop}</Text>
+            <Text style={input.amountLabelBig}>SCORED</Text>
+            <Text style={input.amount}>{coralAttTeleop}</Text>
+            <Text style={input.amountLabelSmall}>ATTEMPTED</Text>
           </View>
-          <View style={game.buttonContainer}>
+          <View style={input.largeRow}>
             <Text
-              style={game.buttonTextLarge}
+              style={[button.large, button.green]}
               onPress={() => {
                 setCoralTeleop(coralTeleop + 1);
                 setCoralAttTeleop(coralAttTeleop + 1);
@@ -58,7 +59,7 @@ export default function TeleopContent({
               SCORE
             </Text>
             <Text
-              style={game.buttonIconLarge}
+              style={button.gray}
               onPress={() => {
                 if (coralTeleop > 0) {
                   setCoralTeleop(coralTeleop - 1);
@@ -66,68 +67,60 @@ export default function TeleopContent({
                 }
               }}
             >
-              <Entypo name="minus" size={80} color={colorScheme.faded} />
+              <Entypo name="minus" size={scale(55)} color={colorScheme.faded} />
             </Text>
           </View>
-          <View style={game.buttonContainer}>
+          <View style={input.smallRow}>
             <Text
-              style={game.buttonTextSmall}
+              style={[button.small, button.red]}
               onPress={() => setCoralAttTeleop(coralAttTeleop + 1)}
             >
               MISS
             </Text>
             <Text
-              style={game.buttonIconSmall}
+              style={button.gray}
               onPress={() => {
                 if (coralAttTeleop > coralTeleop) {
                   setCoralAttTeleop(coralAttTeleop - 1);
                 }
               }}
             >
-              <Entypo name="minus" size={50} color={colorScheme.faded} />
+              <Entypo name="minus" size={scale(35)} color={colorScheme.faded} />
             </Text>
           </View>
         </View>
         {/* Algae */}
-        <View style={game.inputSection}>
-          <Text style={game.inputHeading}>ALGAE</Text>
-          <View style={game.smallInput}>
-            <Text style={game.amountDisplay}>{algaeTeleop}</Text>
-            <Text style={game.amountLabel}>SCORED</Text>
+        <View style={[input.section, border.default]}>
+          <Text style={input.sectionLabel}>ALGAE</Text>
+          <View style={input.largeRow}>
+            <Text style={input.amount}>{algaeTeleop}</Text>
+            <Text style={input.amountLabelBig}>SCORED</Text>
             <Text
-              style={[
-                game.buttonTextSmall,
-                game.smallInputAdjustments,
-                { borderColor: colorScheme.green, color: colorScheme.green },
-              ]}
+              style={[button.medium, button.green, { paddingTop: scale(8) }]}
               onPress={() => setAlgaeTeleop(algaeTeleop + 1)}
             >
               SCORE
             </Text>
             <Text
-              style={[
-                game.buttonIconSmall,
-                game.smallInputAdjustments,
-                { marginLeft: 15 },
-              ]}
+              style={[button.gray]}
               onPress={() => {
                 if (algaeTeleop > 0) {
                   setAlgaeTeleop(algaeTeleop - 1);
                 }
               }}
             >
-              <Entypo name="minus" size={50} color={colorScheme.faded} />
+              <Entypo name="minus" size={scale(45)} color={colorScheme.faded} />
             </Text>
           </View>
         </View>
       </View>
       {/* Branches */}
-      <View style={sideInput.container}>
+      <View style={sidebar.container}>
         <Text
           style={[
-            branch4Teleop ? sideInput.enabled : sideInput.disabled,
-            sideInput.option,
-            sideInput.optionTop,
+            branch4Teleop ? sidebar.enabled : sidebar.disabled,
+            sidebar.button,
+            sidebar.buttonTop,
           ]}
           onPress={() => setBranch4Teleop(!branch4Teleop)}
         >
@@ -135,8 +128,8 @@ export default function TeleopContent({
         </Text>
         <Text
           style={[
-            branch3Teleop ? sideInput.enabled : sideInput.disabled,
-            sideInput.option,
+            branch3Teleop ? sidebar.enabled : sidebar.disabled,
+            sidebar.button,
           ]}
           onPress={() => setBranch3Teleop(!branch3Teleop)}
         >
@@ -144,8 +137,8 @@ export default function TeleopContent({
         </Text>
         <Text
           style={[
-            branch2Teleop ? sideInput.enabled : sideInput.disabled,
-            sideInput.option,
+            branch2Teleop ? sidebar.enabled : sidebar.disabled,
+            sidebar.button,
           ]}
           onPress={() => setBranch2Teleop(!branch2Teleop)}
         >
@@ -153,9 +146,9 @@ export default function TeleopContent({
         </Text>
         <Text
           style={[
-            branch1Teleop ? sideInput.enabled : sideInput.disabled,
-            sideInput.option,
-            sideInput.optionBottom,
+            branch1Teleop ? sidebar.enabled : sidebar.disabled,
+            sidebar.button,
+            sidebar.buttonBottom,
           ]}
           onPress={() => setBranch1Teleop(!branch1Teleop)}
         >

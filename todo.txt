@@ -1,0 +1,22 @@
+- Add option to delete database
+    - Drop Database + Create Database under same name
+- Add Camera Functionality
+    - Get Camera to open
+    - Decoded Datacode and add to database
+- Add basic home page
+    - Shows a panel for each match with database
+        - Indicators for which pos scouted
+    - Match search bar
+        - Numpad input (max 3)
+        - Button to clear search (no search button)
+        - Auto search on input
+    - Team search bar
+        - Kerboard input
+            - Search by team number
+            - Search by team name
+                - Find way to get all team names w/ their number
+                - Generic search with possible matches
+        - Search Button
+            - replaces match data with specific team information
+                - List of results if searching by name
+            - bar stays visible for change in input

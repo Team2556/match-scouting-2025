@@ -1,7 +1,7 @@
 import { Text, View, Pressable } from "react-native";
 
 import colorScheme from "@/constants/colorScheme";
-import { game, other, sideInput } from "../styles/scoutingStyles";
+import { checkbox, input, sidebar } from "../styles/scoutingStyles";
 
 export default function OverallContent({
   finishState,
@@ -27,59 +27,59 @@ export default function OverallContent({
   setScoredNet: any;
 }) {
   return (
-    <View style={game.container}>
-      <View style={{ width: "75%" }}>
+    <View style={input.container}>
+      <View style={input.main}>
         {/* Played Defense */}
         <Pressable
-          style={other.checkBoxOption}
+          style={checkbox.container}
           onPress={() => setPlayedDefense(!playedDefense)}
         >
           <View
-            style={playedDefense ? other.checkBoxTrue : other.checkBoxFalse}
+            style={playedDefense ? checkbox.true : checkbox.false}
           ></View>
 
-          <Text style={other.checkBoxText}>Played Defense</Text>
+          <Text style={checkbox.text}>Played Defense</Text>
         </Pressable>
         {/* Off-Ground Intake */}
         <Pressable
-          style={other.checkBoxOption}
+          style={checkbox.container}
           onPress={() => setOffGroundIntake(!offGroundIntake)}
         >
           <View
-            style={offGroundIntake ? other.checkBoxTrue : other.checkBoxFalse}
+            style={offGroundIntake ? checkbox.true : checkbox.false}
           ></View>
 
-          <Text style={other.checkBoxText}>Off-Ground Intake</Text>
+          <Text style={checkbox.text}>Off-Ground Intake</Text>
         </Pressable>
         {/* Recieved Fouls */}
         <Pressable
-          style={other.checkBoxOption}
+          style={checkbox.container}
           onPress={() => setReceivedFoul(!receivedFoul)}
         >
           <View
-            style={receivedFoul ? other.checkBoxTrue : other.checkBoxFalse}
+            style={receivedFoul ? checkbox.true : checkbox.false}
           ></View>
 
-          <Text style={other.checkBoxText}>Recieved Foul(s)</Text>
+          <Text style={checkbox.text}>Recieved Foul(s)</Text>
         </Pressable>
         {/* Scored in Net */}
         <Pressable
-          style={other.checkBoxOption}
+          style={checkbox.container}
           onPress={() => setScoredNet(!scoredNet)}
         >
           <View
-            style={scoredNet ? other.checkBoxTrue : other.checkBoxFalse}
+            style={scoredNet ? checkbox.true : checkbox.false}
           ></View>
 
-          <Text style={other.checkBoxText}>Scored in Net</Text>
+          <Text style={checkbox.text}>Scored in Net</Text>
         </Pressable>
       </View>
-      <View style={sideInput.container}>
+      <View style={sidebar.container}>
         <Text
           style={[
-            finishState == 3 ? sideInput.enabled : sideInput.disabled,
-            sideInput.option,
-            sideInput.optionTop,
+            finishState == 3 ? sidebar.enabled : sidebar.disabled,
+            sidebar.button,
+            sidebar.buttonTop,
           ]}
           onPress={() => setFinishState(3)}
         >
@@ -87,8 +87,8 @@ export default function OverallContent({
         </Text>
         <Text
           style={[
-            finishState == 2 ? sideInput.enabled : sideInput.disabled,
-            sideInput.option,
+            finishState == 2 ? sidebar.enabled : sidebar.disabled,
+            sidebar.button,
           ]}
           onPress={() => setFinishState(2)}
         >
@@ -96,8 +96,8 @@ export default function OverallContent({
         </Text>
         <Text
           style={[
-            finishState == 1 ? sideInput.enabled : sideInput.disabled,
-            sideInput.option,
+            finishState == 1 ? sidebar.enabled : sidebar.disabled,
+            sidebar.button,
           ]}
           onPress={() => setFinishState(1)}
         >
@@ -105,9 +105,9 @@ export default function OverallContent({
         </Text>
         <Text
           style={[
-            finishState == 0 ? sideInput.enabled : sideInput.disabled,
-            sideInput.option,
-            sideInput.optionBottom,
+            finishState == 0 ? sidebar.enabled : sidebar.disabled,
+            sidebar.button,
+            sidebar.buttonBottom,
           ]}
           onPress={() => setFinishState(0)}
         >
