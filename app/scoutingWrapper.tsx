@@ -110,6 +110,9 @@ export default function ScoutingWrapper() {
       setFieldIncomplete(true);
     } else {
       setFieldIncomplete(false);
+      if (pageDest == 4) {
+        generateDataString();
+      }
       setCurrentPage(pageDest);
     }
   };
@@ -117,7 +120,7 @@ export default function ScoutingWrapper() {
   const generateDataString = () => {
     let dataString = generateDataCode({
       matchNum: parseInt(matchNum),
-      pos: parseInt(startDropValue),
+      pos: ['b1', 'b2', 'b3', 'r1', 'r2', 'r3'].indexOf(startDropValue),
       team: parseInt(teamNum),
       scouter: nameInfo.split(" ")[0],
       coralAuto: coralAuto,
@@ -142,7 +145,7 @@ export default function ScoutingWrapper() {
       foul: receivedFoul,
       net: scoredNet,
     });
-
+    console.log(dataString);
     setDataCode(dataString);
   };
 

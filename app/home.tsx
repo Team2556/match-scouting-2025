@@ -10,9 +10,12 @@ import * as SQLite from "expo-sqlite";
 import { useFocusEffect } from "expo-router";
 import { scale } from "react-native-size-matters";
 
+import { useCameraPermissions } from "expo-camera";
+
 type MatchType = {
   id: number;
   matchNum: number;
+  pos: number;
   team: number;
   scouter: string;
   coralAuto: number;
@@ -36,14 +39,22 @@ export default function Home() {
   const [matchSearch, setMatchSearch] = useState("");
 
   const navigation = useNavigation();
+  const [permission, requestPermission] = useCameraPermissions();
 
   const [data, setData] = useState<MatchType[]>([]);
   const db = SQLite.useSQLiteContext();
 
   const loadData = async () => {
     const result = await db.getAllAsync<MatchType>("SELECT * FROM matchTest;");
-    console.log(result);
     setData(result);
+  };
+  
+  const dropDatabase = async () => {
+    // await db.execAsync(`
+    //   DROP TABLE matchTest;
+    // CREATE TABLE IF NOT EXISTS competition (id INTEGER PRIMARY KEY AUTOINCREMENT, matchNum INTEGER, position INTEGER, team INTEGER, scouter TEXT, coralAuto INTEGER, coralAutoAtt INTEGER, algaeAuto INTEGER, levelAuto TEXT, moved BOOLEAN, coralTeleop INTEGER, coralTeleopAtt INTEGER, algaeTeleop INTEGER, levelTeleop TEXT, finish INTEGER, defense BOOLEAN, ground BOOLEAN, foul BOOLEAN, net BOOLEAN);
+    // `);
+    loadData();
   };
 
   useFocusEffect(
@@ -73,30 +84,34 @@ export default function Home() {
         </Pressable>
       </View>
       <View style={layout.content}>
-        <FlatList data={data} renderItem={({item}) => {
-          return (
-            <View>
-              <Text>{item.id}</Text>
-              <Text>{item.matchNum}</Text>
-              <Text>{item.team}</Text>
-              <Text>{item.scouter}</Text>
-              <Text>{item.coralAuto}</Text>
-              <Text>{item.coralAutoAtt}</Text>
-              <Text>{item.algaeAuto}</Text>
-              <Text>{item.levelAuto}</Text>
-              <Text>{item.moved}</Text>
-              <Text>{item.coralTeleop}</Text>
-              <Text>{item.coralTeleopAtt}</Text>
-              <Text>{item.algaeTeleop}</Text>
-              <Text>{item.levelTeleop}</Text>
-              <Text>{item.finish}</Text>
-              <Text>{item.defense}</Text>
-              <Text>{item.ground}</Text>
-              <Text>{item.foul}</Text>
-              <Text>{item.net}</Text>
-            </View>
-          );
-        }} />
+        <FlatList
+          data={data}
+          renderItem={({ item }) => {
+            return (
+              <View>
+                <Text>{item.id}</Text>
+                <Text>{item.matchNum}</Text>
+                <Text>{item.pos}</Text>
+                <Text>{item.team}</Text>
+                <Text>{item.scouter}</Text>
+                <Text>{item.coralAuto}</Text>
+                <Text>{item.coralAutoAtt}</Text>
+                <Text>{item.algaeAuto}</Text>
+                <Text>{item.levelAuto}</Text>
+                <Text>{item.moved}</Text>
+                <Text>{item.coralTeleop}</Text>
+                <Text>{item.coralTeleopAtt}</Text>
+                <Text>{item.algaeTeleop}</Text>
+                <Text>{item.levelTeleop}</Text>
+                <Text>{item.finish}</Text>
+                <Text>{item.defense}</Text>
+                <Text>{item.ground}</Text>
+                <Text>{item.foul}</Text>
+                <Text>{item.net}</Text>
+              </View>
+            );
+          }}
+        />
       </View>
       <View style={layout.footer}>
         <View style={footer.search}>
@@ -119,10 +134,14 @@ export default function Home() {
           </Pressable>
         </View>
         <View style={footer.scoutButtons}>
+          <Pressable style={footer.scoutButton} onPress={dropDatabase}>
+            <Ionicons name="trash" size={scale(30)} color="red" />
+          </Pressable>
           <Pressable
             style={footer.scoutButton}
             onPress={() => {
-              alert("Camera mode ACTIVATED");
+              requestPermission();
+              navigation.navigate("Camera" as never);
             }}
           >
             <Ionicons name="camera-outline" size={scale(30)} color="white" />
