@@ -1,3 +1,4 @@
+- Add Modal Confimration to data deletion
 - Add basic home page
     - Shows a panel for each match with database
         - Indicators for which pos scouted
@@ -15,4 +16,6 @@
             - replaces match data with specific team information
                 - List of results if searching by name
             - bar stays visible for change in input
-- Add Modal Confimration to data deletion
+- Add Camera Overlay
+    - Box to show center of Camera
+    - Back button to close camera

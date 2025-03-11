@@ -40,3 +40,9 @@ export type MatchType = {
   foul: number;
   net: number;
 };
+
+export type ModalType = {
+  title: string,
+  text: string,
+  bad: boolean,
+}

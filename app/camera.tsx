@@ -4,10 +4,13 @@ import { View, StyleSheet, Button } from "react-native";
 import { useState } from "react";
 
 import * as db from "@/scripts/database";
+import * as SQLite from "expo-sqlite";
 
 export default function Camera() {
   const navigation = useNavigation();
   const [qrScanned, setQRScanned] = useState(false);
+
+  const database = SQLite.useSQLiteContext();
 
   const scanCode = (data: any) => {
     if (qrScanned) {
@@ -15,7 +18,7 @@ export default function Camera() {
     }
     setQRScanned(true);
 
-    db.saveData(data.data);
+    db.saveData(database, data.data);
     console.log(data.data);
 
     navigation.navigate("Home" as never);

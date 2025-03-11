@@ -61,6 +61,12 @@ export default function Home() {
           <Text style={header.searchButtonText}>Search</Text>
           <Feather name="search" size={scale(30)} color="white" />
         </Pressable>
+          <Pressable
+            style={footer.searchButton}
+            onPress={() => navigation.navigate("Settings" as never)}
+          >
+            <Feather name="settings" size={scale(30)} color="white" />
+          </Pressable>
       </View>
       <View style={layout.content}>
         <FlatList
@@ -113,12 +119,7 @@ export default function Home() {
           </Pressable>
         </View>
         <View style={footer.scoutButtons}>
-          <Pressable
-            style={[footer.scoutButton, { borderColor: colorScheme.red }]}
-            onPress={dropDatabase}
-          >
-            <Ionicons name="trash" size={scale(30)} color={colorScheme.red} />
-          </Pressable>
+          
           <Pressable
             style={footer.scoutButton}
             onPress={() => {

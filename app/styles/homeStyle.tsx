@@ -43,7 +43,7 @@ export const layout = StyleSheet.create({
 
 export const header = StyleSheet.create({
   search: {
-    width: "80%",
+    flex: 1,
     height: "100%",
     fontSize: scale(30),
     color: colorScheme.text,

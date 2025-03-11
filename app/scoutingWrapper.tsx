@@ -27,6 +27,8 @@ import {
 import { text } from "./styles/styles";
 import colorScheme from "@/constants/colorScheme";
 import generateDataCode from "@/scripts/dataCodeGenerator";
+import Settings from "./settings";
+import { SettingsModal } from "./extras/modal";
 
 export default function ScoutingWrapper() {
   // Basic Information
@@ -163,44 +165,21 @@ export default function ScoutingWrapper() {
     navigation.navigate("Home" as never);
   };
 
+  const homeModalContent = {
+    title: "Return Home?",
+    text: "All unsaved information will be lost.",
+    bad: true,
+  }
+
   return (
     <View style={wrapper.container}>
       <View style={wrapper.main}>
-        <Modal
-          transparent={true}
-          visible={homeModal}
-          supportedOrientations={["portrait", "landscape"]}
-        >
-          <View style={modal.center}>
-            <View style={[border.default, modal.container]}>
-              <Text style={modal.heading}>Return Home?</Text>
-              <Text style={modal.subheading}>
-                All unsaved information will be lost.
-              </Text>
-              <View style={modal.buttonContainer}>
-                <Pressable
-                  style={[modal.button, { borderColor: colorScheme.green }]}
-                  onPress={() => {
-                    setHomeModal(false);
-                    navigation.navigate("Home" as never);
-                  }}
-                >
-                  <Text
-                    style={[modal.buttonText, { color: colorScheme.green }]}
-                  >
-                    Home
-                  </Text>
-                </Pressable>
-                <Pressable
-                  style={[modal.button]}
-                  onPress={() => setHomeModal(false)}
-                >
-                  <Text style={[modal.buttonText]}>Cancel</Text>
-                </Pressable>
-              </View>
-            </View>
-          </View>
-        </Modal>
+        <SettingsModal
+          display={homeModal}
+          setDisplay={setHomeModal}
+          content={homeModalContent}
+          func={() => navigation.navigate("Home" as never)}
+        />
         {/* Information */}
         <View
           style={currentPage == 0 ? wrapper.infoContent : { display: "none" }}
