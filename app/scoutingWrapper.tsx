@@ -3,6 +3,8 @@ import { Modal, Pressable, Text, View } from "react-native";
 
 import { scale } from "react-native-size-matters";
 import { useNavigation } from "@react-navigation/native";
+
+import * as db from "@/scripts/database";
 import * as SQLite from "expo-sqlite";
 
 import Octicons from "@expo/vector-icons/Octicons";
@@ -150,16 +152,13 @@ export default function ScoutingWrapper() {
   };
 
   const navigation = useNavigation();
+  const database = SQLite.useSQLiteContext();
 
-  const db = SQLite.useSQLiteContext();
 
   const handleSave = async () => {
     generateDataString();
 
-    db.runAsync(
-      "INSERT INTO competition (matchNum, position, team, scouter, coralAuto, coralAutoAtt, algaeAuto, levelAuto, moved, coralTeleop, CoralTeleopAtt, algaeTeleop, levelTeleop, finish, defense, ground, foul, net) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
-      dataCode.split(",")
-    );
+    await db.saveData(database, dataCode);
 
     navigation.navigate("Home" as never);
   };

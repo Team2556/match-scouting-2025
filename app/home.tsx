@@ -6,54 +6,33 @@ import colorScheme from "@/constants/colorScheme";
 import { Feather, Entypo, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-import * as SQLite from "expo-sqlite";
 import { useFocusEffect } from "expo-router";
 import { scale } from "react-native-size-matters";
 
 import { useCameraPermissions } from "expo-camera";
+import { MatchType } from "@/scripts/types";
 
-type MatchType = {
-  id: number;
-  matchNum: number;
-  position: number;
-  team: number;
-  scouter: string;
-  coralAuto: number;
-  coralAutoAtt: number;
-  algaeAuto: number;
-  levelAuto: string;
-  moved: boolean;
-  coralTeleop: number;
-  coralTeleopAtt: number;
-  algaeTeleop: number;
-  levelTeleop: string;
-  finish: number;
-  defense: boolean;
-  ground: boolean;
-  foul: boolean;
-  net: boolean;
-};
+import * as db from "@/scripts/database";
+import * as SQLite from "expo-sqlite";
 
 export default function Home() {
   const [teamSearch, setTeamSearch] = useState("");
   const [matchSearch, setMatchSearch] = useState("");
 
   const navigation = useNavigation();
+  const database = SQLite.useSQLiteContext();
+
   const [permission, requestPermission] = useCameraPermissions();
 
   const [data, setData] = useState<MatchType[]>([]);
-  const db = SQLite.useSQLiteContext();
 
   const loadData = async () => {
-    const result = await db.getAllAsync<MatchType>("SELECT * FROM competition;");
+    const result = await db.loadData(database);
     setData(result);
   };
-  
+
   const dropDatabase = async () => {
-    await db.execAsync(`
-      DROP TABLE competition;
-      CREATE TABLE IF NOT EXISTS competition (id INTEGER PRIMARY KEY AUTOINCREMENT, matchNum INTEGER, position INTEGER, team INTEGER, scouter TEXT, coralAuto INTEGER, coralAutoAtt INTEGER, algaeAuto INTEGER, levelAuto TEXT, moved BOOLEAN, coralTeleop INTEGER, coralTeleopAtt INTEGER, algaeTeleop INTEGER, levelTeleop TEXT, finish INTEGER, defense BOOLEAN, ground BOOLEAN, foul BOOLEAN, net BOOLEAN);
-    `);
+    await db.dropData(database);
     await loadData();
   };
 
@@ -134,8 +113,11 @@ export default function Home() {
           </Pressable>
         </View>
         <View style={footer.scoutButtons}>
-          <Pressable style={footer.scoutButton} onPress={dropDatabase}>
-            <Ionicons name="trash" size={scale(30)} color="red" />
+          <Pressable
+            style={[footer.scoutButton, { borderColor: colorScheme.red }]}
+            onPress={dropDatabase}
+          >
+            <Ionicons name="trash" size={scale(30)} color={colorScheme.red} />
           </Pressable>
           <Pressable
             style={footer.scoutButton}

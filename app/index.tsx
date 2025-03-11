@@ -8,6 +8,7 @@ import ScoutingWrapper from "./scoutingWrapper";
 
 import * as SQLite from "expo-sqlite";
 import Camera from "./camera";
+import { createDbIfNeeded } from "@/scripts/database";
 
 if (Platform.OS == "ios" || Platform.OS == "android") {
   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
@@ -25,12 +26,6 @@ const RootStack = createNativeStackNavigator({
   },
 });
 const Navigation = createStaticNavigation(RootStack);
-
-const createDbIfNeeded = async (db: SQLite.SQLiteDatabase) => {
-  await db.execAsync(`
-    CREATE TABLE IF NOT EXISTS competition (id INTEGER PRIMARY KEY AUTOINCREMENT, matchNum INTEGER, position INTEGER, team INTEGER, scouter TEXT, coralAuto INTEGER, coralAutoAtt INTEGER, algaeAuto INTEGER, levelAuto TEXT, moved BOOLEAN, coralTeleop INTEGER, coralTeleopAtt INTEGER, algaeTeleop INTEGER, levelTeleop TEXT, finish INTEGER, defense BOOLEAN, ground BOOLEAN, foul BOOLEAN, net BOOLEAN);
-    `);
-};
 
 export default function App() {
   return (

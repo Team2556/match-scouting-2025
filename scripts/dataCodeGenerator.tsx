@@ -1,25 +1,6 @@
-type data = {
-  matchNum: number;
-  pos: number;
-  team: number;
-  scouter: string;
-  coralAuto: number;
-  coralAutoAtt: number;
-  algaeAuto: number;
-  levelAuto: string;
-  moved: number;
-  coralTeleop: number;
-  coralTeleopAtt: number;
-  algaeTeleop: number;
-  levelTeleop: string;
-  finish: number;
-  defense: number;
-  ground: number;
-  foul: number;
-  net: number;
-};
+import { DataType } from "./types";
 
-const generateDataCode = (dataCode: data) => {
+const generateDataCode = (dataCode: DataType) => {
   let code = Object.values(dataCode).join(",");
   return code;
 };

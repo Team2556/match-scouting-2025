@@ -15,4 +15,4 @@
             - replaces match data with specific team information
                 - List of results if searching by name
             - bar stays visible for change in input
-- Rename Database to competition
+- Add Modal Confimration to data deletion
