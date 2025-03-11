@@ -129,7 +129,7 @@ export default function ScoutingWrapper() {
       levelAuto: [+branch1Auto, +branch2Auto, +branch3Auto, +branch4Auto].join(
         "|"
       ),
-      moved: movedAuto,
+      moved: +movedAuto,
       coralTeleop: coralTeleop,
       coralTeleopAtt: coralAttTeleop,
       algaeTeleop: algaeTeleop,
@@ -139,11 +139,11 @@ export default function ScoutingWrapper() {
         +branch3Teleop,
         +branch4Teleop,
       ].join("|"),
-      finish: finishState,
-      defense: playedDefense,
-      ground: offGroundIntake,
-      foul: receivedFoul,
-      net: scoredNet,
+      finish: +finishState,
+      defense: +playedDefense,
+      ground: +offGroundIntake,
+      foul: +receivedFoul,
+      net: +scoredNet,
     });
     console.log(dataString);
     setDataCode(dataString);
@@ -157,7 +157,7 @@ export default function ScoutingWrapper() {
     generateDataString();
 
     db.runAsync(
-      "INSERT INTO matchTest (matchNum, position, team, scouter, coralAuto, coralAutoAtt, algaeAuto, levelAuto, moved, coralTeleop, CoralTeleopAtt, algaeTeleop, levelTeleop, finish, defense, ground, foul, net) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+      "INSERT INTO competition (matchNum, position, team, scouter, coralAuto, coralAutoAtt, algaeAuto, levelAuto, moved, coralTeleop, CoralTeleopAtt, algaeTeleop, levelTeleop, finish, defense, ground, foul, net) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
       dataCode.split(",")
     );
 

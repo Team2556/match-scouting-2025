@@ -7,16 +7,16 @@ type data = {
   coralAutoAtt: number;
   algaeAuto: number;
   levelAuto: string;
-  moved: boolean;
+  moved: number;
   coralTeleop: number;
   coralTeleopAtt: number;
   algaeTeleop: number;
   levelTeleop: string;
   finish: number;
-  defense: boolean;
-  ground: boolean;
-  foul: boolean;
-  net: boolean;
+  defense: number;
+  ground: number;
+  foul: number;
+  net: number;
 };
 
 const generateDataCode = (dataCode: data) => {

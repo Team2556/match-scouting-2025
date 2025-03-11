@@ -15,7 +15,7 @@ import { useCameraPermissions } from "expo-camera";
 type MatchType = {
   id: number;
   matchNum: number;
-  pos: number;
+  position: number;
   team: number;
   scouter: string;
   coralAuto: number;
@@ -45,16 +45,16 @@ export default function Home() {
   const db = SQLite.useSQLiteContext();
 
   const loadData = async () => {
-    const result = await db.getAllAsync<MatchType>("SELECT * FROM matchTest;");
+    const result = await db.getAllAsync<MatchType>("SELECT * FROM competition;");
     setData(result);
   };
   
   const dropDatabase = async () => {
-    // await db.execAsync(`
-    //   DROP TABLE matchTest;
-    // CREATE TABLE IF NOT EXISTS competition (id INTEGER PRIMARY KEY AUTOINCREMENT, matchNum INTEGER, position INTEGER, team INTEGER, scouter TEXT, coralAuto INTEGER, coralAutoAtt INTEGER, algaeAuto INTEGER, levelAuto TEXT, moved BOOLEAN, coralTeleop INTEGER, coralTeleopAtt INTEGER, algaeTeleop INTEGER, levelTeleop TEXT, finish INTEGER, defense BOOLEAN, ground BOOLEAN, foul BOOLEAN, net BOOLEAN);
-    // `);
-    loadData();
+    await db.execAsync(`
+      DROP TABLE competition;
+      CREATE TABLE IF NOT EXISTS competition (id INTEGER PRIMARY KEY AUTOINCREMENT, matchNum INTEGER, position INTEGER, team INTEGER, scouter TEXT, coralAuto INTEGER, coralAutoAtt INTEGER, algaeAuto INTEGER, levelAuto TEXT, moved BOOLEAN, coralTeleop INTEGER, coralTeleopAtt INTEGER, algaeTeleop INTEGER, levelTeleop TEXT, finish INTEGER, defense BOOLEAN, ground BOOLEAN, foul BOOLEAN, net BOOLEAN);
+    `);
+    await loadData();
   };
 
   useFocusEffect(
@@ -91,7 +91,7 @@ export default function Home() {
               <View>
                 <Text>{item.id}</Text>
                 <Text>{item.matchNum}</Text>
-                <Text>{item.pos}</Text>
+                <Text>{item.position}</Text>
                 <Text>{item.team}</Text>
                 <Text>{item.scouter}</Text>
                 <Text>{item.coralAuto}</Text>

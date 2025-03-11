@@ -15,5 +15,4 @@
             - replaces match data with specific team information
                 - List of results if searching by name
             - bar stays visible for change in input
-- Replace Booleans with ints (0 || 1)
 - Rename Database to competition
