@@ -17,10 +17,7 @@ export default function Camera() {
       return;
     }
     setQRScanned(true);
-
     db.saveData(database, data.data);
-    console.log(data.data);
-
     navigation.navigate("Home" as never);
   };
 

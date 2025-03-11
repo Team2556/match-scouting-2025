@@ -105,25 +105,25 @@ export const button = StyleSheet.create({
   },
   white: {
     color: colorScheme.text,
-    borderWidth: scale(2),
+    borderWidth: scale(1),
     borderColor: colorScheme.text,
     borderRadius: scale(2),
   },
   green: {
     color: colorScheme.green,
-    borderWidth: scale(2),
+    borderWidth: scale(1),
     borderColor: colorScheme.green,
     borderRadius: scale(2),
   },
   red: {
     color: colorScheme.red,
-    borderWidth: scale(2),
+    borderWidth: scale(1),
     borderColor: colorScheme.red,
     borderRadius: scale(2),
   },
   gray: {
     color: colorScheme.faded,
-    borderWidth: scale(2),
+    borderWidth: scale(1),
     borderColor: colorScheme.faded,
     borderRadius: scale(2),
   },
@@ -144,7 +144,7 @@ export const checkbox = StyleSheet.create({
   true: {
     width: scale(30),
     height: scale(30),
-    borderWidth: scale(2),
+    borderWidth: scale(1),
     borderColor: colorScheme.purple,
     borderRadius: scale(3),
     backgroundColor: colorScheme.purple,
@@ -152,7 +152,7 @@ export const checkbox = StyleSheet.create({
   false: {
     width: scale(30),
     height: scale(30),
-    borderWidth: scale(2),
+    borderWidth: scale(1),
     borderColor: colorScheme.purple,
     borderRadius: scale(3),
     backgroundColor: colorScheme.background,
@@ -176,7 +176,7 @@ export const sidebar = StyleSheet.create({
     width: "100%",
     height: "24%",
     borderColor: colorScheme.purple,
-    borderWidth: scale(3),
+    borderWidth: scale(1),
     fontSize: scale(55),
     color: colorScheme.text,
     textAlign: "center",
@@ -201,7 +201,7 @@ export const sidebar = StyleSheet.create({
 export const border = StyleSheet.create({
   default: {
     //hello
-    borderWidth: scale(2),
+    borderWidth: scale(1),
     borderColor: colorScheme.text,
     borderRadius: scale(2),
   },
@@ -319,7 +319,7 @@ export const nav = StyleSheet.create({
     fontSize: scale(10),
   },
   button: {
-    borderWidth: scale(2),
+    borderWidth: scale(1),
     borderColor: colorScheme.text,
     borderRadius: scale(2),
     width: "100%",
@@ -381,7 +381,7 @@ export const modal = StyleSheet.create({
     justifyContent: "space-around",
   },
   button: {
-    borderWidth: scale(2),
+    borderWidth: scale(1),
     borderColor: colorScheme.text,
     borderRadius: scale(2),
     width: "45%",

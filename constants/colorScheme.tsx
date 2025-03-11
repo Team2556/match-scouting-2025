@@ -5,7 +5,8 @@ const colorScheme = {
     red : '#ff3131',
     purple : '#8000ff',
     text : '#ffffff',
-    faded : '#737373'
+    faded : '#737373',
+    blue : '#0066bf',
 }
 
 export default colorScheme;
