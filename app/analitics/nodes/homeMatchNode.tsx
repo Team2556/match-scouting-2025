@@ -1,13 +1,16 @@
 import { View, Text, Pressable } from "react-native";
 
-import { HomeDisplayType } from "@/scripts/types";
-import { matchStyle } from "../styles/analytics/overview";
+import { MatchPosType } from "@/scripts/types";
+import { matchStyle } from "../../styles/analytics/overview";
+import { useNavigation } from "@react-navigation/native";
 
-const OverViewMatch = ({ match }: { match: HomeDisplayType }) => {
+const HomeMatchNode = ({ match }: { match: MatchPosType }) => {
+  const navigation = useNavigation();
+
   return (
     <Pressable
       style={matchStyle.container}
-      onPress={() => alert("Match: " + match.match)}
+      onPress={() => navigation.navigate("Match", { match: match })}
     >
       <Text style={matchStyle.title}>Match: {match.match}</Text>
       <View style={matchStyle.posRow}>
@@ -66,4 +69,4 @@ const OverViewMatch = ({ match }: { match: HomeDisplayType }) => {
   );
 };
 
-export default OverViewMatch;
+export default HomeMatchNode;

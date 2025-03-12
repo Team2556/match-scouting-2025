@@ -22,4 +22,20 @@ export const saveData = async (db: SQLite.SQLiteDatabase, data: string) => {
     "INSERT INTO competition (matchNum, position, team, scouter, coralAuto, coralAutoAtt, algaeAuto, levelAuto, moved, coralTeleop, CoralTeleopAtt, algaeTeleop, levelTeleop, finish, defense, ground, foul, net) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
     data.split(",")
   );
-}
+};
+
+export const loadMatch = async (
+  db: SQLite.SQLiteDatabase,
+  match: number,
+  pos: number
+) => {
+  const result = await db.getAllAsync<MatchType>(
+    `SELECT * FROM competition WHERE matchNum = ${match} AND position = ${pos};`
+  );
+  if (result.length==1) {
+    return result[0]
+  }
+  else {
+    return result[-1]
+  }
+};

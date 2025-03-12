@@ -10,12 +10,12 @@ import { useFocusEffect } from "expo-router";
 import { scale } from "react-native-size-matters";
 
 import { useCameraPermissions } from "expo-camera";
-import { HomeDisplayType, MatchType } from "@/scripts/types";
+import { MatchPosType, MatchType } from "@/scripts/types";
 
 import * as db from "@/scripts/database";
 import * as SQLite from "expo-sqlite";
 import getMatchesScouted from "@/scripts/getMatchesScouted";
-import HomeOverviewContainer from "./analitics/homeOverview";
+import OverviewContainer from "./analitics/homeOverview";
 
 export default function Home() {
   const [teamSearch, setTeamSearch] = useState("");
@@ -26,7 +26,7 @@ export default function Home() {
 
   const [permission, requestPermission] = useCameraPermissions();
 
-  const [data, setData] = useState<HomeDisplayType[]>([]);
+  const [data, setData] = useState<MatchPosType[]>([]);
 
   const loadData = async () => {
     const result = await getMatchesScouted(database);
@@ -38,6 +38,16 @@ export default function Home() {
       loadData();
     }, [])
   );
+
+  const searchMatch = () => {
+    for (let i in data) {
+      if (data[i].match == parseInt(matchSearch)) {
+        navigation.navigate("Match", { match: data[i] });
+        return
+      }
+    }
+    navigation.navigate("Match", {match: parseInt(matchSearch)});
+  }
 
   return (
     <View style={layout.body}>
@@ -65,7 +75,7 @@ export default function Home() {
             <Feather name="settings" size={scale(30)} color="white" />
           </Pressable>
       </View>
-      <HomeOverviewContainer matches={data} />
+      <OverviewContainer matches={data} />
       <View style={layout.footer}>
         <View style={footer.search}>
           <TextInput
@@ -74,14 +84,12 @@ export default function Home() {
             onChangeText={setMatchSearch}
             placeholder="Match #"
             placeholderTextColor={colorScheme.faded}
-            keyboardType="numeric"
+            keyboardType="number-pad"
             maxLength={3}
           />
           <Pressable
             style={footer.searchButton}
-            onPress={() => {
-              alert("Searching for " + matchSearch);
-            }}
+            onPress={searchMatch}
           >
             <Feather name="search" size={scale(30)} color="white" />
           </Pressable>

@@ -1,12 +1,12 @@
 import * as db from "@/scripts/database";
 import * as SQLite from "expo-sqlite";
-import { HomeDisplayType, MatchType } from "@/scripts/types";
+import { MatchPosType, MatchType } from "@/scripts/types";
 
 const getMatchesScouted = async (database: SQLite.SQLiteDatabase) => {
   const scoutedMatches = await db.loadData(database);
-  let scoutedMatchesList = [] as HomeDisplayType[];
+  let scoutedMatchesList = [] as MatchPosType[];
   let currentMatch: MatchType;
-  let targetedMatch: HomeDisplayType;
+  let targetedMatch: MatchPosType;
 
   for (let match in scoutedMatches) {
     currentMatch = scoutedMatches[match];

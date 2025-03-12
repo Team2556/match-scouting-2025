@@ -47,7 +47,7 @@ export type ModalType = {
   bad: boolean,
 }
 
-export type HomeDisplayType = {
+export type MatchPosType = {
   match: number,
   posScouted: [boolean, boolean, boolean, boolean, boolean, boolean],
 }
