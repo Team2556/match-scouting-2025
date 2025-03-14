@@ -27,6 +27,7 @@ export default function Camera() {
         style={StyleSheet.absoluteFillObject}
         facing="back"
         onBarcodeScanned={scanCode}
+        ratio="16:9"
       />
       <View style={{ position: "fixed", bottom: 0, right: 0 }}>
         <Button title="Close" onPress={() => navigation.goBack()} />

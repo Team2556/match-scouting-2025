@@ -149,7 +149,6 @@ export default function ScoutingWrapper() {
       foul: +receivedFoul,
       net: +scoredNet,
     });
-    console.log(dataString);
     setDataCode(dataString);
   };
 

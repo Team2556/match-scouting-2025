@@ -32,10 +32,17 @@ export const loadMatch = async (
   const result = await db.getAllAsync<MatchType>(
     `SELECT * FROM competition WHERE matchNum = ${match} AND position = ${pos};`
   );
-  if (result.length==1) {
-    return result[0]
+  if (result.length == 1) {
+    return result[0];
+  } else {
+    return result.at(-1);
   }
-  else {
-    return result[-1]
-  }
+};
+
+export const loadTeam = async (db: SQLite.SQLiteDatabase, team: number) => {
+  const result = await db.getAllAsync<MatchType>(
+    `SELECT * FROM competition WHERE team = ${team};`
+  );
+
+  return result;
 };

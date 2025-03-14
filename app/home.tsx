@@ -56,14 +56,14 @@ export default function Home() {
           style={header.search}
           value={teamSearch}
           onChangeText={setTeamSearch}
-          placeholder="Team # / Team Name"
+          placeholder="Team #"
+          keyboardType="number-pad"
           placeholderTextColor={colorScheme.faded}
+          maxLength={5}
         />
         <Pressable
           style={header.searchButton}
-          onPress={() => {
-            alert("Searching for " + teamSearch);
-          }}
+          onPress={() => {navigation.navigate("SpecTeam", { team: parseInt(teamSearch)})}}
         >
           <Text style={header.searchButtonText}>Search</Text>
           <Feather name="search" size={scale(30)} color="white" />

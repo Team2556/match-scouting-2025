@@ -1,0 +1,17 @@
+1. Enable Debugger Tools on Tablet
+    - Go to Settings
+    - Go to Software Information
+    - Click on Build number 7 times
+2. Enable USB debugging
+    - Go to Developer compilerOptions
+    - Enable USB debugging
+3. Go to Expo Go on Tablet
+3. Connect PC to Tablet
+4. In terminal run 'expo start --localhost'
+5. Press 'shift+a'
+6. Select Tablet
+yay
+woohoo
+you did it
+...
+.

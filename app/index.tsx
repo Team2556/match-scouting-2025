@@ -13,6 +13,7 @@ import * as SQLite from "expo-sqlite";
 import * as db from "@/scripts/database";
 import MatchView from "./analitics/matchView";
 import SpecificMatchView from "./analitics/specMatchView";
+import TeamContainer from "./analitics/team/teamContainer";
 
 if (Platform.OS == "ios" || Platform.OS == "android") {
   ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
@@ -26,7 +27,8 @@ const RootStack = createNativeStackNavigator({
     Camera: Camera,
     Settings: Settings,
     Match: MatchView,
-    SpecMatch: SpecificMatchView
+    SpecMatch: SpecificMatchView,
+    SpecTeam: TeamContainer,
   },
   screenOptions: {
     headerShown: false,
